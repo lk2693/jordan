@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://jordan-gmbh.de/sitemap.xml
+
+# Optimize crawling
+Crawl-delay: 1
+
+# Block specific paths if needed
+# Disallow: /admin/
+# Disallow: /private/

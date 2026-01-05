@@ -1,0 +1,13 @@
+<!-- Placeholder image for air conditioning -->
+<svg width="400" height="300" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="300" fill="#e0f2fe"/>
+  <rect x="100" y="80" width="200" height="120" fill="#ffffff" stroke="#0284c7" stroke-width="2" rx="10"/>
+  <rect x="120" y="100" width="160" height="80" fill="#0ea5e9" rx="5"/>
+  <path d="M140 120 Q160 140 180 120 Q200 140 220 120 Q240 140 260 120" stroke="#ffffff" stroke-width="2" fill="none"/>
+  <path d="M140 140 Q160 160 180 140 Q200 160 220 140 Q240 160 260 140" stroke="#ffffff" stroke-width="2" fill="none"/>
+  <path d="M140 160 Q160 180 180 160 Q200 180 220 160 Q240 180 260 160" stroke="#ffffff" stroke-width="2" fill="none"/>
+  <circle cx="320" cy="120" r="8" fill="#0284c7"/>
+  <circle cx="340" cy="140" r="6" fill="#0ea5e9"/>
+  <circle cx="360" cy="120" r="8" fill="#0284c7"/>
+  <text x="200" y="280" text-anchor="middle" fill="#374151" font-family="Arial" font-size="16" font-weight="bold">Klimaanlage</text>
+</svg>

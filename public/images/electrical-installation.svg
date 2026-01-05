@@ -1,0 +1,14 @@
+<!-- Placeholder image for electrical installation -->
+<svg width="400" height="300" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="300" fill="#f3f4f6"/>
+  <rect x="50" y="50" width="300" height="200" fill="#1f2937"/>
+  <path d="M150 150 L250 150 M200 100 L200 200 M175 125 L225 125 M175 175 L225 175" stroke="#fbbf24" stroke-width="3" fill="none"/>
+  <circle cx="150" cy="150" r="5" fill="#fbbf24"/>
+  <circle cx="250" cy="150" r="5" fill="#fbbf24"/>
+  <circle cx="200" cy="100" r="5" fill="#fbbf24"/>
+  <circle cx="200" cy="200" r="5" fill="#fbbf24"/>
+  <rect x="80" y="80" width="30" height="50" fill="#374151" rx="3"/>
+  <rect x="290" y="80" width="30" height="50" fill="#374151" rx="3"/>
+  <rect x="180" y="60" width="40" height="20" fill="#10b981" rx="3"/>
+  <text x="200" y="280" text-anchor="middle" fill="#374151" font-family="Arial" font-size="16" font-weight="bold">Elektroinstallation</text>
+</svg>
