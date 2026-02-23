@@ -34,6 +34,9 @@ export default function Header() {
             <Link href="/leistungen" className="text-gray-700 hover:text-blue-900 font-medium transition-colors">
               Leistungen
             </Link>
+            <Link href="/preise" className="text-gray-700 hover:text-blue-900 font-medium transition-colors">
+              Preise
+            </Link>
             <Link href="/referenzen" className="text-gray-700 hover:text-blue-900 font-medium transition-colors">
               Referenzen
             </Link>
@@ -73,6 +76,7 @@ export default function Header() {
                 <Link href="/service-versprechen" className="block text-gray-600 hover:text-blue-900" onClick={() => setIsMenuOpen(false)}>⭐ Service-Versprechen</Link>
                 <Link href="/kundenbewertungen" className="block text-gray-600 hover:text-blue-900" onClick={() => setIsMenuOpen(false)}>💬 Kundenbewertungen</Link>
               </div>
+              <Link href="/preise" className="text-gray-700 hover:text-blue-900 font-medium py-2 border-b border-gray-100" onClick={() => setIsMenuOpen(false)}>Preise</Link>
               <Link href="/referenzen" className="text-gray-700 hover:text-blue-900 font-medium py-2 border-b border-gray-100" onClick={() => setIsMenuOpen(false)}>Referenzen</Link>
               <Link href="/kontakt" className="bg-orange-500 text-white px-6 py-3 rounded-xl hover:bg-orange-600 font-semibold text-center mt-2" onClick={() => setIsMenuOpen(false)}>Kontakt</Link>
             </div>

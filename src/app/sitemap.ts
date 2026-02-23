@@ -51,6 +51,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: 'yearly',
       priority: 0.6,
+    },
+    {
+      url: `${baseUrl}/preise`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
     }
   ]
 }
