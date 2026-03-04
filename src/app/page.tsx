@@ -1,18 +1,12 @@
-'use client';
-
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import Calculator from '@/components/Calculator';
-
-type CalculatorType = 'heating' | 'bathroom' | 'maintenance';
+import CalculatorSection from '@/components/CalculatorSection';
+import FaqAccordion from '@/components/FaqAccordion';
+import HeroContactForm from '@/components/HeroContactForm';
 
 export default function Home() {
-  const [openFaq, setOpenFaq] = useState<number | null>(null);
-  const [activeCalculator, setActiveCalculator] = useState<CalculatorType>('heating');
-
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
@@ -33,70 +27,79 @@ export default function Home() {
     {
       title: 'Wärmepumpen',
       description: 'Moderne Wärmepumpentechnologie für effizientes Heizen und Kühlen.',
-      icon: (
-        <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-          <path strokeLinecap="round" strokeLinejoin="round" d="M12.75 3.03v.568c0 .334.148.65.405.864l1.068.89c.442.369.535 1.01.216 1.49l-.51.766a2.25 2.25 0 01-1.161.886l-.143.048a1.107 1.107 0 00-.57 1.664c.369.555.169 1.307-.427 1.605L9 13.125l.423 1.059a.956.956 0 01-1.652.928l-.679-.906a1.125 1.125 0 00-1.906.172L4.5 15.75l-.612.153M12.75 3.031a9 9 0 10-8.862 12.872M12.75 3.031a9 9 0 016.69 14.036m0 0l-.177-.529A2.25 2.25 0 0017.128 15H16.5l-.324-.324a1.453 1.453 0 00-2.328.377l-.036.073a1.586 1.586 0 01-.982.816l-.99.282c-.55.157-.894.702-.8 1.267l.073.438c.081.487-.195.964-.66 1.119l-.45.15" />
-        </svg>
-      ),
+      icon: 'globe',
       color: 'emerald',
       link: '/leistungen'
     },
     {
       title: 'Heizungsanlagen',
       description: 'Installation, Wartung und Reparatur moderner Heizungssysteme.',
-      icon: (
-        <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-          <path strokeLinecap="round" strokeLinejoin="round" d="M15.362 5.214A8.252 8.252 0 0112 21 8.25 8.25 0 016.038 7.047 8.287 8.287 0 009 9.601a8.983 8.983 0 013.361-6.867 8.21 8.21 0 003 2.48z" />
-        </svg>
-      ),
+      icon: 'fire',
       color: 'orange',
       link: '/leistungen'
     },
     {
       title: 'Sanitär & Bad',
       description: 'Komplette Badinstallationen und professionelle Sanitärlösungen.',
-      icon: (
-        <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-          <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5" />
-        </svg>
-      ),
+      icon: 'water',
       color: 'cyan',
       link: '/leistungen'
     },
     {
       title: 'Klimaanlagen',
       description: 'Klimatisierung für angenehme Temperaturen das ganze Jahr.',
-      icon: (
-        <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-          <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v18m0-18l-3 3m3-3l3 3m-3 15l-3-3m3 3l3-3M3 12h18M3 12l3-3m-3 3l3 3m15-3l-3-3m3 3l-3 3" />
-        </svg>
-      ),
+      icon: 'snow',
       color: 'blue',
       link: '/leistungen'
     },
     {
       title: 'Elektroinstallation',
       description: 'Sichere und moderne Elektroinstallationen und Smart Home.',
-      icon: (
-        <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-          <path strokeLinecap="round" strokeLinejoin="round" d="m3.75 13.5 10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
-        </svg>
-      ),
+      icon: 'bolt',
       color: 'yellow',
       link: '/leistungen'
     },
     {
       title: 'Notdienst 24/7',
       description: 'Rund um die Uhr erreichbar für alle Notfälle.',
-      icon: (
-        <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-          <path strokeLinecap="round" strokeLinejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
-        </svg>
-      ),
+      icon: 'bell',
       color: 'red',
       link: '/notdienst'
     },
   ];
+
+  const serviceIcons: Record<string, React.ReactNode> = {
+    globe: (
+      <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M12.75 3.03v.568c0 .334.148.65.405.864l1.068.89c.442.369.535 1.01.216 1.49l-.51.766a2.25 2.25 0 01-1.161.886l-.143.048a1.107 1.107 0 00-.57 1.664c.369.555.169 1.307-.427 1.605L9 13.125l.423 1.059a.956.956 0 01-1.652.928l-.679-.906a1.125 1.125 0 00-1.906.172L4.5 15.75l-.612.153M12.75 3.031a9 9 0 10-8.862 12.872M12.75 3.031a9 9 0 016.69 14.036m0 0l-.177-.529A2.25 2.25 0 0017.128 15H16.5l-.324-.324a1.453 1.453 0 00-2.328.377l-.036.073a1.586 1.586 0 01-.982.816l-.99.282c-.55.157-.894.702-.8 1.267l.073.438c.081.487-.195.964-.66 1.119l-.45.15" />
+      </svg>
+    ),
+    fire: (
+      <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M15.362 5.214A8.252 8.252 0 0112 21 8.25 8.25 0 016.038 7.047 8.287 8.287 0 009 9.601a8.983 8.983 0 013.361-6.867 8.21 8.21 0 003 2.48z" />
+      </svg>
+    ),
+    water: (
+      <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5" />
+      </svg>
+    ),
+    snow: (
+      <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v18m0-18l-3 3m3-3l3 3m-3 15l-3-3m3 3l3-3M3 12h18M3 12l3-3m-3 3l3 3m15-3l-3-3m3 3l-3 3" />
+      </svg>
+    ),
+    bolt: (
+      <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="m3.75 13.5 10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+      </svg>
+    ),
+    bell: (
+      <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
+      </svg>
+    ),
+  };
 
   const stats = [
     { value: '25+', label: 'Jahre Erfahrung' },
@@ -167,6 +170,7 @@ export default function Home() {
             src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=1920&h=1080&fit=crop"
             alt="Handwerker bei der Arbeit"
             fill
+            sizes="100vw"
             className="object-cover opacity-40"
             priority
           />
@@ -179,7 +183,6 @@ export default function Home() {
         }} />
         {/* Accent glow */}
         <div className="absolute top-1/4 -right-32 w-[500px] h-[500px] bg-amber-500/10 rounded-full blur-[120px]" />
-        <div className="absolute bottom-1/4 -left-32 w-[400px] h-[400px] bg-blue-500/8 rounded-full blur-[100px]" />
 
         <div className="container mx-auto px-4 relative z-10 pt-32 pb-20">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
@@ -221,7 +224,7 @@ export default function Home() {
                 </Link>
                 <a
                   href="tel:053123449080"
-                  className="inline-flex items-center justify-center gap-2 bg-white/15 hover:bg-white/25 text-white border border-white/30 px-7 py-3.5 rounded-xl text-[0.9375rem] font-semibold transition-all duration-200 backdrop-blur-sm"
+                  className="inline-flex items-center justify-center gap-2 bg-white/15 hover:bg-white/25 text-white border border-white/30 px-7 py-3.5 rounded-xl text-[0.9375rem] font-semibold transition-all duration-200"
                 >
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
@@ -247,57 +250,14 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Right - Contact Form Card */}
-            <div className="relative">
-              {/* Glow behind card */}
-              <div className="absolute -inset-4 bg-gradient-to-r from-amber-500/20 to-blue-500/10 rounded-3xl blur-2xl opacity-60" />
-              <div className="relative bg-white rounded-2xl p-7 md:p-8 shadow-2xl border border-white/20">
-                <div className="text-center mb-6">
-                  <h2 className="text-xl font-bold text-slate-900">Kostenloser Rückruf</h2>
-                  <p className="text-sm text-slate-500 mt-1">Wir melden uns innerhalb von 2 Stunden</p>
-                </div>
-                <form className="space-y-3.5">
-                  <input
-                    type="text"
-                    placeholder="Ihr Name"
-                    className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-amber-500/40 focus:border-amber-500 bg-slate-50/50 text-slate-900 placeholder:text-slate-400 transition-all text-sm"
-                  />
-                  <input
-                    type="tel"
-                    placeholder="Ihre Telefonnummer"
-                    className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-amber-500/40 focus:border-amber-500 bg-slate-50/50 text-slate-900 placeholder:text-slate-400 transition-all text-sm"
-                  />
-                  <select
-                    className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-amber-500/40 focus:border-amber-500 bg-slate-50/50 text-slate-900 transition-all text-sm"
-                    defaultValue=""
-                  >
-                    <option value="" disabled>Wie können wir helfen?</option>
-                    <option value="heizung">Heizung</option>
-                    <option value="sanitaer">Sanitär & Bad</option>
-                    <option value="klima">Klima & Lüftung</option>
-                    <option value="elektro">Elektro</option>
-                    <option value="waermepumpe">Wärmepumpe</option>
-                    <option value="notdienst">Notdienst</option>
-                    <option value="sonstiges">Sonstiges</option>
-                  </select>
-                  <button
-                    type="submit"
-                    className="w-full bg-[#152852] hover:bg-[#193c6e] text-white font-bold py-3.5 px-6 rounded-xl transition-all duration-200 text-sm hover:shadow-lg"
-                  >
-                    Rückruf anfordern
-                  </button>
-                  <p className="text-center text-xs text-slate-400">
-                    100% kostenlos & unverbindlich
-                  </p>
-                </form>
-              </div>
-            </div>
+            {/* Right - Contact Form Card (Client Component) */}
+            <HeroContactForm />
           </div>
 
           {/* Stats bar */}
           <div className="mt-16 lg:mt-20 grid grid-cols-2 md:grid-cols-4 gap-4">
             {stats.map((stat, i) => (
-              <div key={i} className="text-center bg-white/5 backdrop-blur-sm rounded-2xl py-5 px-4 border border-white/8">
+              <div key={i} className="text-center bg-white/5 rounded-2xl py-5 px-4 border border-white/8">
                 <p className="text-2xl md:text-3xl font-extrabold text-white">
                   {stat.value} {stat.suffix && <span className="text-lg">{stat.suffix}</span>}
                 </p>
@@ -331,7 +291,7 @@ export default function Home() {
                 className="group relative bg-white rounded-2xl p-6 border border-slate-100 hover:border-slate-200 hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
               >
                 <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-5 transition-colors duration-300 ${colorMap[service.color]}`}>
-                  {service.icon}
+                  {serviceIcons[service.icon]}
                 </div>
                 <h3 className="text-lg font-bold text-slate-900 mb-2 group-hover:text-amber-600 transition-colors">
                   {service.title}
@@ -363,7 +323,9 @@ export default function Home() {
                     src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800&h=800&fit=crop"
                     alt="Jordan Handwerker bei der Arbeit"
                     fill
+                    sizes="(max-width: 1024px) 100vw, 50vw"
                     className="object-cover"
+                    loading="lazy"
                   />
                 </div>
                 {/* Floating stats card */}
@@ -433,65 +395,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══════ CALCULATOR ═══════ */}
-      <section className="py-20 md:py-28 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="max-w-2xl mx-auto">
-            <div className="text-center mb-8">
-              <span className="inline-block bg-blue-50 text-blue-700 px-4 py-1.5 rounded-full text-sm font-semibold mb-4">
-                Kostenlos & unverbindlich
-              </span>
-              <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-3">
-                Kosten sofort berechnen
-              </h2>
-              <p className="text-slate-500">
-                In unter 2 Minuten eine erste Kostenschätzung erhalten
-              </p>
-            </div>
-
-            <div className="bg-white rounded-2xl shadow-xl border border-slate-100 overflow-hidden">
-              {/* Tabs */}
-              <div className="flex border-b border-slate-100">
-                {[
-                  { key: 'heating' as CalculatorType, label: 'Heizung', icon: '🔥' },
-                  { key: 'bathroom' as CalculatorType, label: 'Bad', icon: '🚿' },
-                  { key: 'maintenance' as CalculatorType, label: 'Wartung', icon: '🔧' },
-                ].map((tab) => (
-                  <button
-                    key={tab.key}
-                    onClick={() => setActiveCalculator(tab.key)}
-                    className={`flex-1 py-4 text-sm font-semibold transition-all relative ${
-                      activeCalculator === tab.key
-                        ? 'text-[#152852]'
-                        : 'text-slate-400 hover:text-slate-600 hover:bg-slate-50'
-                    }`}
-                  >
-                    <span className="block text-lg mb-0.5">{tab.icon}</span>
-                    {tab.label}
-                    {activeCalculator === tab.key && (
-                      <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-12 h-0.5 bg-amber-500 rounded-full" />
-                    )}
-                  </button>
-                ))}
-              </div>
-              <div className="p-6">
-                <Calculator type={activeCalculator} useApi={false} identName="" />
-              </div>
-            </div>
-
-            <div className="mt-6 flex flex-wrap justify-center gap-5 text-sm text-slate-400">
-              {['Keine Anmeldung nötig', 'Sofortiges Ergebnis', 'Unverbindlich'].map((text) => (
-                <div key={text} className="flex items-center gap-1.5">
-                  <svg className="w-4 h-4 text-emerald-500" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                  </svg>
-                  {text}
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* ═══════ CALCULATOR (Client Component, Lazy-loaded) ═══════ */}
+      <CalculatorSection />
 
       {/* ═══════ REFERENZEN PREVIEW ═══════ */}
       <section className="py-20 md:py-28 bg-slate-50">
@@ -519,22 +424,22 @@ export default function Home() {
 
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-5">
               <div className="relative h-64 md:h-80 rounded-2xl overflow-hidden group">
-                <Image src="https://images.unsplash.com/photo-1540574163026-643ea20ade25?w=600&h=800&fit=crop" alt="Badezimmer Renovierung" fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
+                <Image src="https://images.unsplash.com/photo-1540574163026-643ea20ade25?w=600&h=800&fit=crop" alt="Badezimmer Renovierung" fill sizes="(max-width: 768px) 50vw, 33vw" className="object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <p className="absolute bottom-4 left-4 text-white font-semibold text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">Badsanierung</p>
               </div>
               <div className="relative h-64 md:h-80 md:col-span-2 rounded-2xl overflow-hidden group">
-                <Image src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=1200&h=600&fit=crop" alt="Heizungsinstallation" fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
+                <Image src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=1200&h=600&fit=crop" alt="Heizungsinstallation" fill sizes="(max-width: 768px) 50vw, 66vw" className="object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <p className="absolute bottom-4 left-4 text-white font-semibold text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">Heizungsinstallation</p>
               </div>
               <div className="relative h-64 md:h-80 md:col-span-2 rounded-2xl overflow-hidden group">
-                <Image src="https://images.unsplash.com/photo-1625961332771-3f40b0e2bdcf?w=1200&h=600&fit=crop" alt="Klimaanlage" fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
+                <Image src="https://images.unsplash.com/photo-1625961332771-3f40b0e2bdcf?w=1200&h=600&fit=crop" alt="Klimaanlage" fill sizes="(max-width: 768px) 50vw, 66vw" className="object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <p className="absolute bottom-4 left-4 text-white font-semibold text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">Klimatechnik</p>
               </div>
               <div className="relative h-64 md:h-80 rounded-2xl overflow-hidden group">
-                <Image src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=600&h=800&fit=crop" alt="Sanitär" fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
+                <Image src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=600&h=800&fit=crop" alt="Sanitär" fill sizes="(max-width: 768px) 50vw, 33vw" className="object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <p className="absolute bottom-4 left-4 text-white font-semibold text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">Sanitärinstallation</p>
               </div>
@@ -630,7 +535,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══════ FAQ ═══════ */}
+      {/* ═══════ FAQ (Client Component) ═══════ */}
       <section className="py-20 md:py-28 bg-slate-50">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto">
@@ -643,46 +548,7 @@ export default function Home() {
               </h2>
             </div>
 
-            <div className="space-y-3">
-              {faqs.map((faq, index) => (
-                <div
-                  key={index}
-                  className={`bg-white rounded-xl border transition-all duration-300 ${
-                    openFaq === index ? 'border-amber-200 shadow-md' : 'border-slate-100 hover:border-slate-200'
-                  }`}
-                >
-                  <button
-                    onClick={() => setOpenFaq(openFaq === index ? null : index)}
-                    className="w-full px-6 py-4 text-left flex items-center justify-between gap-4"
-                  >
-                    <span className="text-[0.9375rem] font-semibold text-slate-900">{faq.question}</span>
-                    <svg
-                      className={`w-5 h-5 text-slate-400 flex-shrink-0 transition-transform duration-300 ${openFaq === index ? 'rotate-180 text-amber-500' : ''}`}
-                      fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-                    </svg>
-                  </button>
-                  <div className={`grid transition-all duration-300 ${openFaq === index ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}>
-                    <div className="overflow-hidden">
-                      <p className="px-6 pb-4 text-sm text-slate-500 leading-relaxed">
-                        {faq.answer}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <div className="text-center mt-8">
-              <p className="text-sm text-slate-500 mb-3">Noch Fragen? Wir helfen gerne!</p>
-              <Link href="/kontakt" className="inline-flex items-center gap-2 bg-[#152852] text-white px-6 py-3 rounded-xl text-sm font-semibold hover:bg-[#193c6e] transition-all hover:-translate-y-0.5 hover:shadow-lg">
-                Kontakt aufnehmen
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-                </svg>
-              </Link>
-            </div>
+            <FaqAccordion faqs={faqs} />
           </div>
         </div>
       </section>
@@ -715,7 +581,7 @@ export default function Home() {
               </Link>
               <a
                 href="tel:053123449080"
-                className="inline-flex items-center justify-center gap-2 bg-white/15 hover:bg-white/25 text-white border border-white/30 px-8 py-4 rounded-xl font-semibold transition-all backdrop-blur-sm"
+                className="inline-flex items-center justify-center gap-2 bg-white/15 hover:bg-white/25 text-white border border-white/30 px-8 py-4 rounded-xl font-semibold transition-all"
               >
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
