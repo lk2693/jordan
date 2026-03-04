@@ -152,9 +152,16 @@
 /* ─── Mobile Performance ──────────────────── */
 
 @media (max-width: 768px) {
-  /* Disable expensive infinite animations on mobile */
+  /* Disable ALL expensive infinite animations on mobile */
   .animate-float,
   .animate-pulse-glow {
+    animation: none !important;
+  }
+
+  /* Disable Tailwind infinite animations on mobile */
+  .animate-ping,
+  .animate-pulse,
+  .animate-bounce {
     animation: none !important;
   }
 
@@ -165,10 +172,10 @@
     -webkit-backdrop-filter: blur(10px) !important;
   }
 
-  /* Defer rendering of below-fold sections */
-  section:not(:first-of-type) {
-    content-visibility: auto;
-    contain-intrinsic-size: auto 600px;
+  /* Reduce all backdrop-blur to lighter values on mobile */
+  [class*="backdrop-blur"] {
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
   }
 }
 

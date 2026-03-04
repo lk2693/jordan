@@ -1,8 +1,13 @@
-'use client';
-
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
+import Image from 'next/image';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Preise & Verrechnung | Jordan GmbH — Transparente Kosten',
+  description: 'Faire und transparente Verrechnungssätze der Jordan GmbH. Stundensätze, Notdienstpauschale und Zuschläge auf einen Blick.',
+};
 
 export default function Preise() {
   const rates = [
@@ -45,7 +50,7 @@ export default function Preise() {
       {/* Hero */}
       <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 bg-[#152852] overflow-hidden">
         <div className="absolute inset-0">
-          <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1920&h=800&fit=crop" alt="" className="w-full h-full object-cover opacity-20" />
+          <Image src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1920&h=800&fit=crop" alt="" fill sizes="100vw" className="object-cover opacity-20" priority />
           <div className="absolute inset-0 bg-gradient-to-b from-[#152852]/60 via-[#152852]/70 to-[#152852]/95" />
         </div>
         <div className="absolute top-1/3 right-0 w-[500px] h-[500px] bg-amber-500/8 rounded-full blur-[150px]" />
@@ -103,8 +108,8 @@ export default function Preise() {
             <div className="grid md:grid-cols-3 gap-5">
               {rates.map((rate, i) => (
                 <div key={i} className="bg-white border-2 border-slate-100 rounded-2xl p-6 hover:border-amber-200 hover:shadow-lg transition-all duration-300 group">
-                  <div className={`w-12 h-12 bg-${rate.accent}-50 rounded-xl flex items-center justify-center mb-5`}>
-                    <svg className={`w-6 h-6 text-${rate.accent}-600`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                  <div className="w-12 h-12 bg-amber-50 rounded-xl flex items-center justify-center mb-5">
+                    <svg className="w-6 h-6 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
                     </svg>
                   </div>
@@ -118,12 +123,12 @@ export default function Preise() {
                       </div>
                       <span className="text-[10px] text-slate-400 mb-1">/ Stunde</span>
                     </div>
-                    <div className={`bg-${rate.accent}-50 rounded-xl p-3.5 flex items-end justify-between`}>
+                    <div className="bg-amber-50 rounded-xl p-3.5 flex items-end justify-between">
                       <div>
-                        <p className={`text-[10px] text-${rate.accent}-600 uppercase tracking-wider font-medium`}>Brutto</p>
-                        <p className={`text-xl font-bold text-${rate.accent}-800`}>{rate.brutto} <span className={`text-sm font-semibold text-${rate.accent}-500`}>€</span></p>
+                        <p className="text-[10px] text-amber-600 uppercase tracking-wider font-medium">Brutto</p>
+                        <p className="text-xl font-bold text-amber-800">{rate.brutto} <span className="text-sm font-semibold text-amber-500">€</span></p>
                       </div>
-                      <span className={`text-[10px] text-${rate.accent}-500 mb-0.5`}>inkl. 19% MwSt.</span>
+                      <span className="text-[10px] text-amber-500 mb-0.5">inkl. 19% MwSt.</span>
                     </div>
                   </div>
                 </div>

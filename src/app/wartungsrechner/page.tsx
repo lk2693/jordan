@@ -1,8 +1,12 @@
-'use client';
-
 import Calculator from '@/components/Calculator';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Wartungsrechner | Jordan GmbH — Kosten berechnen',
+  description: 'Berechnen Sie die Wartungskosten für Ihre Heizungsanlage. Kostenlos, unverbindlich und sofort ein Ergebnis.',
+};
 
 export default function WartungsrechnerPage() {
   return (

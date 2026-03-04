@@ -110,7 +110,7 @@ export default function Referenzen() {
       {/* Hero */}
       <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 bg-[#152852] overflow-hidden">
         <div className="absolute inset-0">
-          <img src="https://images.unsplash.com/photo-1585704032915-c3400ca199e7?w=1920&h=800&fit=crop" alt="" className="w-full h-full object-cover opacity-25" />
+          <Image src="https://images.unsplash.com/photo-1585704032915-c3400ca199e7?w=1920&h=800&fit=crop" alt="" fill sizes="100vw" className="object-cover opacity-25" priority />
           <div className="absolute inset-0 bg-gradient-to-b from-[#152852]/60 via-[#152852]/70 to-[#152852]/95" />
         </div>
         <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-amber-500/8 rounded-full blur-[150px]" />
@@ -172,7 +172,9 @@ export default function Referenzen() {
                     src={project.image}
                     alt={project.title}
                     fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    loading="lazy"
                   />
                   <div className="absolute top-3 right-3">
                     <span className={`px-3 py-1 rounded-full text-xs font-semibold ${categoryColor(project.category)}`}>
@@ -220,7 +222,7 @@ export default function Referenzen() {
         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-50" onClick={() => setSelectedProject(null)}>
           <div className="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl" onClick={e => e.stopPropagation()}>
             <div className="relative h-64">
-              <Image src={selectedProject.image} alt={selectedProject.title} fill className="object-cover rounded-t-2xl" />
+              <Image src={selectedProject.image} alt={selectedProject.title} fill sizes="(max-width: 768px) 100vw, 672px" className="object-cover rounded-t-2xl" />
               <button
                 onClick={() => setSelectedProject(null)}
                 className="absolute top-4 right-4 w-9 h-9 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center text-slate-600 hover:text-slate-900 transition-colors"

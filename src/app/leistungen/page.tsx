@@ -1,9 +1,13 @@
-'use client';
-
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
 import Image from 'next/image';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Unsere Leistungen | Jordan GmbH — Klima, Heizung, Sanitär, Elektro',
+  description: 'Von der Beratung bis zur Umsetzung — Jordan GmbH bietet alle Leistungen rund um Klima, Heizung, Sanitär und Elektro aus einer Hand in Braunschweig.',
+};
 
 export default function Leistungen() {
   const services = [
@@ -59,7 +63,7 @@ export default function Leistungen() {
       {/* Hero */}
       <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 bg-[#152852] overflow-hidden">
         <div className="absolute inset-0">
-          <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1920&h=800&fit=crop" alt="" className="w-full h-full object-cover opacity-30" />
+          <Image src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1920&h=800&fit=crop" alt="" fill sizes="100vw" className="object-cover opacity-30" priority />
           <div className="absolute inset-0 bg-gradient-to-b from-[#152852]/60 via-[#152852]/70 to-[#152852]/95" />
         </div>
         <div className="absolute top-1/3 -right-32 w-[400px] h-[400px] bg-amber-500/10 rounded-full blur-[120px]" />
@@ -107,7 +111,9 @@ export default function Leistungen() {
                     src={service.image}
                     alt={service.title}
                     fill
+                    sizes="(max-width: 1024px) 100vw, 50vw"
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    loading="lazy"
                   />
                 </div>
 

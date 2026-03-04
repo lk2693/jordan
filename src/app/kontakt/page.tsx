@@ -4,6 +4,7 @@ import { useState } from 'react';
 import dynamic from 'next/dynamic';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import Image from 'next/image';
 
 const Map = dynamic(() => import('@/components/Map'), { ssr: false });
 
@@ -33,7 +34,7 @@ export default function Kontakt() {
       {/* Hero */}
       <section className="relative pt-32 pb-16 md:pt-40 md:pb-20 bg-[#152852] overflow-hidden">
         <div className="absolute inset-0">
-          <img src="https://images.unsplash.com/photo-1423666639041-f56000c27a9a?w=1920&h=800&fit=crop" alt="" className="w-full h-full object-cover opacity-25" />
+          <Image src="https://images.unsplash.com/photo-1423666639041-f56000c27a9a?w=1920&h=800&fit=crop" alt="" fill sizes="100vw" className="object-cover opacity-25" priority />
           <div className="absolute inset-0 bg-gradient-to-b from-[#152852]/60 via-[#152852]/70 to-[#152852]/95" />
         </div>
         <div className="absolute bottom-0 left-1/4 w-[500px] h-[500px] bg-amber-500/8 rounded-full blur-[150px]" />

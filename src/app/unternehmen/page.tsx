@@ -1,12 +1,14 @@
-'use client';
-
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
 import Image from 'next/image';
-import dynamic from 'next/dynamic';
+import MapWrapper from '@/components/MapWrapper';
+import type { Metadata } from 'next';
 
-const Map = dynamic(() => import('@/components/Map'), { ssr: false });
+export const metadata: Metadata = {
+  title: 'Über uns | Jordan GmbH — Seit 1976 in Braunschweig',
+  description: 'Erfahren Sie mehr über die Jordan GmbH: 45+ Jahre Erfahrung, 19+ Mitarbeiter und unsere Firmengeschichte in Braunschweig.',
+};
 
 export default function Unternehmen() {
   const timeline = [
@@ -54,7 +56,7 @@ export default function Unternehmen() {
       {/* Hero */}
       <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 bg-[#152852] overflow-hidden">
         <div className="absolute inset-0">
-          <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=1920&h=800&fit=crop" alt="" className="w-full h-full object-cover opacity-25" />
+          <Image src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=1920&h=800&fit=crop" alt="" fill sizes="100vw" className="object-cover opacity-25" priority />
           <div className="absolute inset-0 bg-gradient-to-b from-[#152852]/60 via-[#152852]/70 to-[#152852]/95" />
         </div>
         <div className="absolute top-1/4 -left-32 w-[500px] h-[500px] bg-amber-500/8 rounded-full blur-[150px]" />
@@ -102,7 +104,9 @@ export default function Unternehmen() {
                 src="/images/jordan.png"
                 alt="Jordan Team bei der Arbeit"
                 fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover"
+                loading="lazy"
               />
             </div>
             <div className="space-y-6">
@@ -200,7 +204,9 @@ export default function Unternehmen() {
                     src="/images/Zajonc.jpg"
                     alt="Siegmar Zajonc - Geschäftsführer"
                     fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
                     className="object-cover object-top"
+                    loading="lazy"
                   />
                 </div>
                 <div className="p-8 md:p-10 flex flex-col justify-center">
@@ -257,7 +263,7 @@ export default function Unternehmen() {
                   <div key={index} className="bg-white rounded-2xl overflow-hidden border border-slate-100 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group">
                     <div className="relative h-40">
                       {member.image ? (
-                        <Image src={member.image} alt={member.name} fill className="object-cover object-top" />
+                        <Image src={member.image} alt={member.name} fill sizes="(max-width: 1024px) 50vw, 25vw" className="object-cover object-top" loading="lazy" />
                       ) : (
                         <div className={`w-full h-full bg-gradient-to-br ${colorPool[index % colorPool.length]} flex items-center justify-center`}>
                           <span className="text-3xl font-bold text-white">{initials}</span>
@@ -309,7 +315,7 @@ export default function Unternehmen() {
 
             <div className="grid lg:grid-cols-2 gap-8 items-stretch">
               <div className="h-[380px] lg:h-auto rounded-2xl overflow-hidden border border-slate-200">
-                <Map lat={52.2350} lng={10.5650} zoom={15} markerText="JORDAN GmbH" />
+                <MapWrapper lat={52.2350} lng={10.5650} zoom={15} markerText="JORDAN GmbH" />
               </div>
               <div className="bg-slate-50 rounded-2xl p-8 border border-slate-100 flex flex-col justify-center">
                 <h3 className="text-xl font-extrabold text-slate-900 mb-6">JORDAN GmbH</h3>
