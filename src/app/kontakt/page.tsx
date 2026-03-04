@@ -2,8 +2,6 @@
 
 import { useState } from 'react';
 import dynamic from 'next/dynamic';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
 import Image from 'next/image';
 
 const Map = dynamic(() => import('@/components/Map'), { ssr: false });
@@ -29,8 +27,6 @@ export default function Kontakt() {
 
   return (
     <div className="min-h-screen overflow-x-hidden">
-      <Header />
-
       {/* Hero */}
       <section className="relative pt-32 pb-16 md:pt-40 md:pb-20 bg-[#152852] overflow-hidden">
         <div className="absolute inset-0">
@@ -294,7 +290,6 @@ export default function Kontakt() {
         </div>
       </section>
 
-      <Footer />
     </div>
   );
 }

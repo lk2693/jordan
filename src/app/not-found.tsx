@@ -1,11 +1,8 @@
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
 import Link from 'next/link';
 
 export default function NotFound() {
   return (
     <div className="min-h-screen overflow-x-hidden">
-      <Header />
       
       <section className="pt-32 pb-20">
         <div className="container mx-auto px-4">
@@ -50,7 +47,6 @@ export default function NotFound() {
         </div>
       </section>
 
-      <Footer />
     </div>
   );
 }

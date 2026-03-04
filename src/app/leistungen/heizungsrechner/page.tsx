@@ -1,12 +1,10 @@
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+
 import Calculator from '@/components/Calculator';
 import Link from 'next/link';
 
 export default function HeizungsrechnerPage() {
   return (
     <div className="min-h-screen overflow-x-hidden">
-      <Header />
       
       <section className="pt-32 pb-20">
         <div className="container mx-auto px-4">
@@ -129,7 +127,6 @@ export default function HeizungsrechnerPage() {
         </div>
       </section>
 
-      <Footer />
     </div>
   );
 }

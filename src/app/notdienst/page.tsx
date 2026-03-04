@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+
 import Link from 'next/link';
 
 export const metadata: Metadata = {
@@ -87,8 +86,6 @@ export default function Notdienst() {
 
   return (
     <div className="min-h-screen overflow-x-hidden">
-      <Header />
-
       {/* ════════════════════════════════════════
           HERO — Full-impact emergency header
           ════════════════════════════════════════ */}
@@ -702,7 +699,6 @@ export default function Notdienst() {
         </div>
       </section>
 
-      <Footer />
     </div>
   );
 }

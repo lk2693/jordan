@@ -1,5 +1,4 @@
-import Header from '@/components/Header'
-import Footer from '@/components/Footer'
+
 
 export default function ServiceVersprechen() {
   // SVG Icons
@@ -119,7 +118,6 @@ export default function ServiceVersprechen() {
 
   return (
     <div className="min-h-screen bg-gray-50 overflow-x-hidden">
-      <Header />
       
       {/* Hero Section */}
       <div className="relative bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700 text-white pt-40 pb-16 overflow-hidden">
@@ -220,7 +218,6 @@ export default function ServiceVersprechen() {
         </div>
       </div>
 
-      <Footer />
     </div>
   )
 }

@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Exo_2, Source_Sans_3 } from "next/font/google";
 import "./globals.css";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 // Corporate Identity fonts matching jordan24.de
 const exo2 = Exo_2({
@@ -83,6 +85,7 @@ export default function RootLayout({
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://images.unsplash.com" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover" />
         <meta name="theme-color" content="#152852" />
         <link rel="icon" href="/joradan.png" type="image/png" />
@@ -90,9 +93,11 @@ export default function RootLayout({
         <link rel="manifest" href="/manifest.json" />
       </head>
       <body
-        className={`${exo2.variable} ${sourceSans.variable} font-sans antialiased`}
+        className={`${exo2.variable} ${sourceSans.variable} font-sans antialiased min-h-screen overflow-x-hidden`}
       >
-        {children}
+        <Header />
+        <main>{children}</main>
+        <Footer />
       </body>
     </html>
   );

@@ -1,8 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -105,8 +103,6 @@ export default function Referenzen() {
 
   return (
     <div className="min-h-screen overflow-x-hidden">
-      <Header />
-
       {/* Hero */}
       <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 bg-[#152852] overflow-hidden">
         <div className="absolute inset-0">
@@ -325,7 +321,6 @@ export default function Referenzen() {
         </div>
       </section>
 
-      <Footer />
     </div>
   );
 }

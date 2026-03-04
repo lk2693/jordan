@@ -1,5 +1,4 @@
-import Header from '@/components/Header'
-import Footer from '@/components/Footer'
+
 
 export default function Foerdermittel() {
   // SVG Icons
@@ -146,7 +145,6 @@ export default function Foerdermittel() {
 
   return (
     <div className="min-h-screen bg-gray-50 overflow-x-hidden">
-      <Header />
       
       {/* Hero Section */}
       <div className="relative bg-gradient-to-br from-green-900 via-emerald-800 to-teal-700 text-white pt-40 pb-16 overflow-hidden">
@@ -380,7 +378,6 @@ export default function Foerdermittel() {
         </div>
       </div>
 
-      <Footer />
     </div>
   )
 }

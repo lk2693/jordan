@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+
 import CalculatorSection from '@/components/CalculatorSection';
 import FaqAccordion from '@/components/FaqAccordion';
 import HeroContactForm from '@/components/HeroContactForm';
@@ -160,8 +159,6 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <Header />
-
       {/* ═══════ HERO ═══════ */}
       <section className="relative min-h-screen flex items-center bg-[#152852] overflow-hidden">
         {/* Background layers */}
@@ -593,7 +590,6 @@ export default function Home() {
         </div>
       </section>
 
-      <Footer />
     </div>
   );
 }

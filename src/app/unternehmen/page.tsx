@@ -1,5 +1,4 @@
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+
 import Link from 'next/link';
 import Image from 'next/image';
 import MapWrapper from '@/components/MapWrapper';
@@ -51,8 +50,6 @@ export default function Unternehmen() {
 
   return (
     <div className="min-h-screen overflow-x-hidden">
-      <Header />
-
       {/* Hero */}
       <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 bg-[#152852] overflow-hidden">
         <div className="absolute inset-0">
@@ -388,7 +385,6 @@ export default function Unternehmen() {
         </div>
       </section>
 
-      <Footer />
     </div>
   );
 }

@@ -1,7 +1,5 @@
 'use client';
 
-import Header from '@/components/Header'
-import Footer from '@/components/Footer'
 import Calculator from '@/components/Calculator'
 import { useState } from 'react'
 
@@ -39,7 +37,6 @@ export default function WaermepumpenCheck() {
 
   return (
     <div className="min-h-screen bg-gray-50 overflow-x-hidden">
-      <Header />
       
       {/* Hero Section - Kompakter */}
       <div className="relative bg-gradient-to-br from-green-900 via-green-800 to-emerald-700 text-white pt-40 pb-16 overflow-hidden">
@@ -415,7 +412,6 @@ export default function WaermepumpenCheck() {
         </div>
       </div>
 
-      <Footer />
     </div>
   )
 }

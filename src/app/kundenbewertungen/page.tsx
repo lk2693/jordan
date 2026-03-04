@@ -1,5 +1,4 @@
-import Header from '@/components/Header'
-import Footer from '@/components/Footer'
+
 
 export default function Kundenbewertungen() {
   const testimonials = [
@@ -92,7 +91,6 @@ export default function Kundenbewertungen() {
 
   return (
     <div className="min-h-screen bg-gray-50 overflow-x-hidden">
-      <Header />
       
       {/* Hero Section */}
       <div className="relative bg-gradient-to-br from-yellow-600 via-orange-600 to-red-600 text-white pt-40 pb-16 overflow-hidden">
@@ -258,7 +256,6 @@ export default function Kundenbewertungen() {
         </div>
       </div>
 
-      <Footer />
     </div>
   )
 }
