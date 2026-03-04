@@ -30,13 +30,13 @@ export default function Header() {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-[padding] duration-500 ${
           scrolled ? 'py-2' : 'py-4'
         }`}
       >
         <div className="container mx-auto px-4">
           <nav
-            className={`flex items-center justify-between px-5 md:px-8 rounded-2xl transition-all duration-500 ${
+            className={`flex items-center justify-between px-5 md:px-8 rounded-2xl transition-[padding,background-color,box-shadow] duration-500 ${
               scrolled
                 ? 'py-3 bg-white shadow-[0_2px_20px_rgb(0_0_0/0.08)] border border-slate-100'
                 : 'py-4 bg-white shadow-sm border border-slate-100'
@@ -59,7 +59,7 @@ export default function Header() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="px-4 py-2 text-[0.9375rem] font-medium text-slate-700 hover:text-amber-600 rounded-lg hover:bg-amber-50/60 transition-all duration-200"
+                  className="px-4 py-2 text-[0.9375rem] font-medium text-slate-700 hover:text-amber-600 rounded-lg hover:bg-amber-50/60 transition-colors duration-200"
                 >
                   {link.label}
                 </Link>
@@ -79,7 +79,7 @@ export default function Header() {
               </a>
               <Link
                 href="/kontakt"
-                className="bg-[#F39900] text-white px-5 py-2.5 rounded-xl text-sm font-semibold hover:bg-[#d98600] transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5"
+                className="bg-[#F39900] text-white px-5 py-2.5 rounded-xl text-sm font-semibold hover:bg-[#d98600] transition-colors duration-200"
               >
                 Termin buchen
               </Link>
@@ -92,9 +92,9 @@ export default function Header() {
               aria-label="Menü"
             >
               <div className="w-5 h-4 flex flex-col justify-between">
-                <span className={`block h-0.5 bg-slate-800 rounded-full transition-all duration-300 origin-center ${isMenuOpen ? 'rotate-45 translate-y-[7px]' : ''}`} />
-                <span className={`block h-0.5 bg-slate-800 rounded-full transition-all duration-300 ${isMenuOpen ? 'opacity-0 scale-0' : ''}`} />
-                <span className={`block h-0.5 bg-slate-800 rounded-full transition-all duration-300 origin-center ${isMenuOpen ? '-rotate-45 -translate-y-[7px]' : ''}`} />
+                <span className={`block h-0.5 bg-slate-800 rounded-full transition-transform duration-300 origin-center ${isMenuOpen ? 'rotate-45 translate-y-[7px]' : ''}`} />
+                <span className={`block h-0.5 bg-slate-800 rounded-full transition-opacity duration-300 ${isMenuOpen ? 'opacity-0' : ''}`} />
+                <span className={`block h-0.5 bg-slate-800 rounded-full transition-transform duration-300 origin-center ${isMenuOpen ? '-rotate-45 -translate-y-[7px]' : ''}`} />
               </div>
             </button>
           </nav>
@@ -102,9 +102,9 @@ export default function Header() {
       </header>
 
       {/* Mobile Menu Overlay */}
-      <div className={`fixed inset-0 z-40 lg:hidden transition-all duration-500 ${isMenuOpen ? 'visible' : 'invisible'}`}>
+      <div className={`fixed inset-0 z-40 lg:hidden transition-[visibility] duration-500 ${isMenuOpen ? 'visible' : 'invisible'}`}>
         <div
-          className={`absolute inset-0 bg-slate-900/40 backdrop-blur-sm transition-opacity duration-500 ${isMenuOpen ? 'opacity-100' : 'opacity-0'}`}
+          className={`absolute inset-0 bg-slate-900/40 transition-opacity duration-500 ${isMenuOpen ? 'opacity-100' : 'opacity-0'}`}
           onClick={() => setIsMenuOpen(false)}
         />
         <div className={`absolute top-0 right-0 h-full w-[85%] max-w-sm bg-white shadow-2xl transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
@@ -114,7 +114,7 @@ export default function Header() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`text-lg font-medium text-slate-800 hover:text-amber-600 py-3 px-4 rounded-xl hover:bg-amber-50/60 transition-all duration-300 ${isMenuOpen ? 'animate-fade-up' : ''}`}
+                  className={`text-lg font-medium text-slate-800 hover:text-amber-600 py-3 px-4 rounded-xl hover:bg-amber-50/60 transition-colors duration-200 ${isMenuOpen ? 'animate-fade-up' : ''}`}
                   style={{ animationDelay: `${(i + 1) * 75}ms` }}
                   onClick={() => setIsMenuOpen(false)}
                 >
@@ -122,18 +122,18 @@ export default function Header() {
                 </Link>
               ))}
               <div className="mt-3 pt-3 border-t border-slate-100">
-                <Link href="/notdienst" className="flex items-center gap-3 text-base font-medium text-slate-600 hover:text-red-600 py-3 px-4 rounded-xl hover:bg-red-50 transition-all" onClick={() => setIsMenuOpen(false)}>
+                <Link href="/notdienst" className="flex items-center gap-3 text-base font-medium text-slate-600 hover:text-red-600 py-3 px-4 rounded-xl hover:bg-red-50 transition-colors duration-200" onClick={() => setIsMenuOpen(false)}>
                   <span className="relative flex h-2 w-2">
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
                     <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
                   </span>
                   24/7 Notdienst
                 </Link>
-                <Link href="/waermepumpen-check" className="flex items-center gap-3 text-base font-medium text-slate-600 hover:text-emerald-600 py-3 px-4 rounded-xl hover:bg-emerald-50 transition-all" onClick={() => setIsMenuOpen(false)}>
+                <Link href="/waermepumpen-check" className="flex items-center gap-3 text-base font-medium text-slate-600 hover:text-emerald-600 py-3 px-4 rounded-xl hover:bg-emerald-50 transition-colors duration-200" onClick={() => setIsMenuOpen(false)}>
                   <svg className="w-4 h-4 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                   Wärmepumpen-Check
                 </Link>
-                <Link href="/foerdermittel" className="flex items-center gap-3 text-base font-medium text-slate-600 hover:text-amber-600 py-3 px-4 rounded-xl hover:bg-amber-50 transition-all" onClick={() => setIsMenuOpen(false)}>
+                <Link href="/foerdermittel" className="flex items-center gap-3 text-base font-medium text-slate-600 hover:text-amber-600 py-3 px-4 rounded-xl hover:bg-amber-50 transition-colors duration-200" onClick={() => setIsMenuOpen(false)}>
                   <svg className="w-4 h-4 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                   Fördermittel
                 </Link>

@@ -154,7 +154,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-white overflow-x-hidden">
+    <div className="min-h-screen bg-white">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -164,33 +164,26 @@ export default function Home() {
         {/* Background layers */}
         <div className="absolute inset-0">
           <Image
-            src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=1920&h=1080&fit=crop"
+            src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=1200&h=800&fit=crop&q=75"
             alt="Handwerker bei der Arbeit"
             fill
             sizes="100vw"
+            quality={70}
             className="object-cover opacity-40"
             priority
           />
           <div className="absolute inset-0 bg-gradient-to-b from-[#152852]/70 via-[#152852]/60 to-[#152852]/90" />
         </div>
-        {/* Subtle grid pattern */}
-        <div className="absolute inset-0 opacity-[0.03]" style={{
-          backgroundImage: `radial-gradient(circle at 1px 1px, white 1px, transparent 0)`,
-          backgroundSize: '40px 40px'
-        }} />
-        {/* Accent glow */}
-        <div className="absolute top-1/4 -right-32 w-[500px] h-[500px] bg-amber-500/10 rounded-full blur-[120px]" />
+        {/* Accent glow — hidden on mobile via CSS */}
+        <div className="hidden md:block absolute top-1/4 -right-32 w-[500px] h-[500px] bg-amber-500/10 rounded-full blur-[120px]" />
 
         <div className="container mx-auto px-4 relative z-10 pt-32 pb-20">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             {/* Left - Content */}
             <div className="space-y-8 max-w-xl">
               {/* Badge */}
-              <div className="inline-flex items-center gap-2 bg-white/8 backdrop-blur-md px-4 py-2 rounded-full border border-white/10">
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
-                </span>
+              <div className="inline-flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full border border-white/10">
+                <span className="inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
                 <span className="text-sm font-medium text-white/80">Seit über 25 Jahren in Braunschweig</span>
               </div>
 
@@ -212,7 +205,7 @@ export default function Home() {
               <div className="flex flex-col sm:flex-row gap-3 pt-2">
                 <Link
                   href="/kontakt"
-                  className="inline-flex items-center justify-center gap-2 bg-amber-500 hover:bg-amber-400 text-[#152852] px-7 py-3.5 rounded-xl text-[0.9375rem] font-bold transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_30px_rgb(243_153_0/0.35)]"
+                  className="inline-flex items-center justify-center gap-2 bg-amber-500 hover:bg-amber-400 text-[#152852] px-7 py-3.5 rounded-xl text-[0.9375rem] font-bold transition-colors duration-200"
                 >
                   Kostenlos beraten lassen
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
@@ -221,7 +214,7 @@ export default function Home() {
                 </Link>
                 <a
                   href="tel:053123449080"
-                  className="inline-flex items-center justify-center gap-2 bg-white/15 hover:bg-white/25 text-white border border-white/30 px-7 py-3.5 rounded-xl text-[0.9375rem] font-semibold transition-all duration-200"
+                  className="inline-flex items-center justify-center gap-2 bg-white/15 hover:bg-white/25 text-white border border-white/30 px-7 py-3.5 rounded-xl text-[0.9375rem] font-semibold transition-colors duration-200"
                 >
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
@@ -285,18 +278,18 @@ export default function Home() {
               <Link
                 key={index}
                 href={service.link}
-                className="group relative bg-white rounded-2xl p-6 border border-slate-100 hover:border-slate-200 hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+                className="group relative bg-white rounded-2xl p-6 border border-slate-100 hover:border-slate-200 hover:shadow-xl transition-shadow duration-300 hover:-translate-y-1"
               >
                 <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-5 transition-colors duration-300 ${colorMap[service.color]}`}>
                   {serviceIcons[service.icon]}
                 </div>
-                <h3 className="text-lg font-bold text-slate-900 mb-2 group-hover:text-amber-600 transition-colors">
+                <h3 className="text-lg font-bold text-slate-900 mb-2 group-hover:text-amber-600 transition-colors duration-200">
                   {service.title}
                 </h3>
                 <p className="text-sm text-slate-500 leading-relaxed mb-4">
                   {service.description}
                 </p>
-                <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-slate-400 group-hover:text-amber-600 transition-colors">
+                <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-slate-400 group-hover:text-amber-600 transition-colors duration-200">
                   Mehr erfahren
                   <svg className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
@@ -317,10 +310,11 @@ export default function Home() {
               <div className="relative">
                 <div className="relative h-[480px] md:h-[560px] rounded-2xl overflow-hidden">
                   <Image
-                    src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800&h=800&fit=crop"
+                    src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=600&h=600&fit=crop&q=75"
                     alt="Jordan Handwerker bei der Arbeit"
                     fill
                     sizes="(max-width: 1024px) 100vw, 50vw"
+                    quality={70}
                     className="object-cover"
                     loading="lazy"
                   />
@@ -421,22 +415,22 @@ export default function Home() {
 
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-5">
               <div className="relative h-64 md:h-80 rounded-2xl overflow-hidden group">
-                <Image src="https://images.unsplash.com/photo-1540574163026-643ea20ade25?w=600&h=800&fit=crop" alt="Badezimmer Renovierung" fill sizes="(max-width: 768px) 50vw, 33vw" className="object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+                <Image src="https://images.unsplash.com/photo-1540574163026-643ea20ade25?w=400&h=600&fit=crop&q=75" alt="Badezimmer Renovierung" fill sizes="(max-width: 768px) 50vw, 33vw" quality={70} className="object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <p className="absolute bottom-4 left-4 text-white font-semibold text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">Badsanierung</p>
               </div>
               <div className="relative h-64 md:h-80 md:col-span-2 rounded-2xl overflow-hidden group">
-                <Image src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=1200&h=600&fit=crop" alt="Heizungsinstallation" fill sizes="(max-width: 768px) 50vw, 66vw" className="object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+                <Image src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=800&h=400&fit=crop&q=75" alt="Heizungsinstallation" fill sizes="(max-width: 768px) 50vw, 66vw" quality={70} className="object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <p className="absolute bottom-4 left-4 text-white font-semibold text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">Heizungsinstallation</p>
               </div>
               <div className="relative h-64 md:h-80 md:col-span-2 rounded-2xl overflow-hidden group">
-                <Image src="https://images.unsplash.com/photo-1625961332771-3f40b0e2bdcf?w=1200&h=600&fit=crop" alt="Klimaanlage" fill sizes="(max-width: 768px) 50vw, 66vw" className="object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+                <Image src="https://images.unsplash.com/photo-1625961332771-3f40b0e2bdcf?w=800&h=400&fit=crop&q=75" alt="Klimaanlage" fill sizes="(max-width: 768px) 50vw, 66vw" quality={70} className="object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <p className="absolute bottom-4 left-4 text-white font-semibold text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">Klimatechnik</p>
               </div>
               <div className="relative h-64 md:h-80 rounded-2xl overflow-hidden group">
-                <Image src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=600&h=800&fit=crop" alt="Sanitär" fill sizes="(max-width: 768px) 50vw, 33vw" className="object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+                <Image src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=400&h=600&fit=crop&q=75" alt="Sanitär" fill sizes="(max-width: 768px) 50vw, 33vw" quality={70} className="object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <p className="absolute bottom-4 left-4 text-white font-semibold text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">Sanitärinstallation</p>
               </div>
@@ -447,10 +441,6 @@ export default function Home() {
 
       {/* ═══════ EMERGENCY CTA ═══════ */}
       <section className="py-16 bg-gradient-to-r from-red-600 to-red-700 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10" style={{
-          backgroundImage: `radial-gradient(circle at 1px 1px, white 1px, transparent 0)`,
-          backgroundSize: '32px 32px'
-        }} />
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="flex items-center gap-4">
@@ -466,7 +456,7 @@ export default function Home() {
             </div>
             <a
               href="tel:053123449080"
-              className="inline-flex items-center gap-2 bg-white text-red-700 px-7 py-3.5 rounded-xl font-bold hover:bg-red-50 transition-all hover:-translate-y-0.5 hover:shadow-lg flex-shrink-0"
+              className="inline-flex items-center gap-2 bg-white text-red-700 px-7 py-3.5 rounded-xl font-bold hover:bg-red-50 transition-colors duration-200 flex-shrink-0"
             >
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
@@ -495,7 +485,7 @@ export default function Home() {
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
               {testimonials.map((t, i) => (
-                <div key={i} className="bg-slate-50 rounded-2xl p-6 md:p-7 border border-slate-100 hover:shadow-lg hover:border-slate-200 transition-all duration-300">
+                <div key={i} className="bg-slate-50 rounded-2xl p-6 md:p-7 border border-slate-100 hover:shadow-lg hover:border-slate-200 transition-shadow duration-300">
                   {/* Stars */}
                   <div className="flex gap-0.5 mb-4">
                     {[...Array(t.rating)].map((_, j) => (
@@ -552,11 +542,7 @@ export default function Home() {
 
       {/* ═══════ FINAL CTA ═══════ */}
       <section className="py-20 md:py-28 bg-[#152852] relative overflow-hidden">
-        <div className="absolute inset-0 opacity-[0.03]" style={{
-          backgroundImage: `radial-gradient(circle at 1px 1px, white 1px, transparent 0)`,
-          backgroundSize: '40px 40px'
-        }} />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-amber-500/8 rounded-full blur-[120px]" />
+        <div className="hidden md:block absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-amber-500/8 rounded-full blur-[120px]" />
 
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-3xl mx-auto text-center space-y-6">
@@ -569,7 +555,7 @@ export default function Home() {
             <div className="flex flex-col sm:flex-row gap-3 justify-center pt-4">
               <Link
                 href="/kontakt"
-                className="inline-flex items-center justify-center gap-2 bg-amber-500 hover:bg-amber-400 text-[#152852] px-8 py-4 rounded-xl font-bold transition-all hover:-translate-y-0.5 hover:shadow-[0_8px_30px_rgb(243_153_0/0.35)]"
+                className="inline-flex items-center justify-center gap-2 bg-amber-500 hover:bg-amber-400 text-[#152852] px-8 py-4 rounded-xl font-bold transition-colors duration-200"
               >
                 Projekt anfragen
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
@@ -578,7 +564,7 @@ export default function Home() {
               </Link>
               <a
                 href="tel:053123449080"
-                className="inline-flex items-center justify-center gap-2 bg-white/15 hover:bg-white/25 text-white border border-white/30 px-8 py-4 rounded-xl font-semibold transition-all"
+                className="inline-flex items-center justify-center gap-2 bg-white/15 hover:bg-white/25 text-white border border-white/30 px-8 py-4 rounded-xl font-semibold transition-colors duration-200"
               >
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />

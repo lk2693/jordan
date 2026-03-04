@@ -1,11 +1,9 @@
-'use client';
-
 export default function HeroContactForm() {
   return (
     <div className="relative">
-      {/* Glow behind card */}
-      <div className="absolute -inset-4 bg-gradient-to-r from-amber-500/20 to-blue-500/10 rounded-3xl blur-2xl opacity-60" />
-      <div className="relative bg-white rounded-2xl p-7 md:p-8 shadow-2xl border border-white/20">
+      {/* Glow behind card — hidden on mobile */}
+      <div className="hidden md:block absolute -inset-4 bg-gradient-to-r from-amber-500/20 to-blue-500/10 rounded-3xl blur-2xl opacity-60" />
+      <div className="relative bg-white rounded-2xl p-7 md:p-8 shadow-xl border border-white/20">
         <div className="text-center mb-6">
           <h2 className="text-xl font-bold text-slate-900">Kostenloser Rückruf</h2>
           <p className="text-sm text-slate-500 mt-1">Wir melden uns innerhalb von 2 Stunden</p>

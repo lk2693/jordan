@@ -165,17 +165,36 @@
     animation: none !important;
   }
 
-  /* Reduce backdrop-blur complexity on mobile */
+  /* Kill all backdrop-blur on mobile — very expensive compositing */
   .glass,
-  .glass-dark {
-    backdrop-filter: blur(10px) !important;
-    -webkit-backdrop-filter: blur(10px) !important;
+  .glass-dark,
+  [class*="backdrop-blur"] {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
   }
 
-  /* Reduce all backdrop-blur to lighter values on mobile */
-  [class*="backdrop-blur"] {
-    backdrop-filter: blur(8px) !important;
-    -webkit-backdrop-filter: blur(8px) !important;
+  /* Kill large decorative blur effects on mobile (GPU killers) */
+  [class*="blur-[120px]"],
+  [class*="blur-[100px]"],
+  [class*="blur-3xl"] {
+    display: none !important;
+  }
+
+  /* Simplify box-shadows on mobile */
+  .shadow-2xl {
+    box-shadow: 0 4px 16px rgb(0 0 0 / 0.1) !important;
+  }
+
+  /* Remove hover transforms on mobile (prevents layout recalc) */
+  .hover\:-translate-y-0\.5:hover,
+  .hover\:-translate-y-1:hover {
+    transform: none !important;
+  }
+
+  /* Reduce transition complexity on mobile */
+  .transition-all {
+    transition-property: color, background-color, border-color, opacity !important;
+    transition-duration: 150ms !important;
   }
 }
 
