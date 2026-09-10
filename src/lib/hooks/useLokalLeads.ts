@@ -6,7 +6,7 @@ import {
   createFlowTransaction,
   updateFlowTransaction,
   executeCalculation,
-  createAppointment,
+  submitContactLead,
   type CalculatorIntegration,
   type FlowTransaction,
   type FlowInput,
@@ -167,17 +167,16 @@ export function useLokalLeads(options: UseLokalLeadsOptions = {}): UseLokalLeads
     setError(null);
 
     try {
-      const result = await createAppointment({
-        channel: 'PHONE',
-        reason: data.reason || 'Rückrufanfrage vom Wartungsrechner',
-        customerName: data.customerName,
-        customerEmail: data.customerEmail,
-        customerPhone: data.customerPhone,
-        preferredDate: data.preferredDate,
-        preferredTime: data.preferredTime,
+      const preferred = [data.preferredDate, data.preferredTime].filter(Boolean).join(' ');
+      const result = await submitContactLead({
+        name: data.customerName,
+        email: data.customerEmail,
+        phone: data.customerPhone,
+        topic: data.reason || 'Rückrufanfrage vom Wartungsrechner',
+        message: preferred ? `Wunschtermin: ${preferred}` : undefined,
       });
 
-      if (result) {
+      if (result === 'sent') {
         return true;
       } else {
         setError('Terminanfrage konnte nicht gesendet werden');

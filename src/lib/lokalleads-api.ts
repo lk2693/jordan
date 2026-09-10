@@ -147,7 +147,7 @@ export async function getCalculatorIntegration(
  */
 export async function createFlowTransaction(
   identName: string,
-  type: 'CALCULATOR' | 'FORM' = 'CALCULATOR'
+  type: 'INTEGRATION' | 'CT_INTEGRATION' | 'MEASUREMENT' | 'CONSULTING' | 'TEST' = 'INTEGRATION'
 ): Promise<FlowTransaction | null> {
   const query = `
     mutation CreateFlowTransaction($input: CreateFlowTransaction!) {
@@ -228,39 +228,61 @@ export async function executeCalculation(
 }
 
 /**
- * Create appointment for callback
+ * LokalLeads-Identifier des Kunden (von LokalLeads vergeben).
+ * Solange er fehlt, fallen die Formulare auf den E-Mail-Versand zurück.
  */
-export async function createAppointment(
-  input: {
-    leadId?: number;
-    channel: 'PHONE' | 'EMAIL' | 'VIDEO';
-    reason: string;
-    preferredDate?: string;
-    preferredTime?: string;
-    customerName: string;
-    customerEmail: string;
-    customerPhone?: string;
-  }
-): Promise<{ id: string } | null> {
+export const LOKALLEADS_IDENT = process.env.NEXT_PUBLIC_LOKALLEADS_IDENT ?? '';
+
+export type ContactLead = {
+  name: string;
+  phone?: string;
+  email?: string;
+  topic: string;
+  message?: string;
+};
+
+export type SubmitResult = 'sent' | 'not-configured' | 'error';
+
+/**
+ * Lead über den LokalLeads-Flow anlegen:
+ * flowTransactionCreate (INTEGRATION) → flowTransactionUpdate mit den Feldwerten.
+ * Feldnamen (name/phone/email/topic/message) müssen mit der Flow-Konfiguration
+ * bei LokalLeads übereinstimmen — nach Erhalt des identName einmal verifizieren.
+ */
+export async function submitContactLead(lead: ContactLead): Promise<SubmitResult> {
+  if (!LOKALLEADS_IDENT) return 'not-configured';
+
+  const transaction = await createFlowTransaction(LOKALLEADS_IDENT);
+  if (!transaction?.trxToken) return 'error';
+
   const query = `
-    mutation CreateAppointment($appointment: CreateAppointmentInput!) {
-      appointmentCreate(appointment: $appointment) {
+    mutation UpdateFlowTransaction($input: UpdateFlowTransaction!) {
+      flowTransactionUpdate(input: $input) {
         id
+        trxToken
       }
     }
   `;
 
-  const result = await executeQuery<{ appointmentCreate: { id: string } }>(
+  const inputs = [
+    { name: 'name', values: lead.name },
+    { name: 'phone', values: lead.phone ?? '' },
+    { name: 'email', values: lead.email ?? '' },
+    { name: 'topic', values: lead.topic },
+    { name: 'message', values: lead.message ?? '' },
+  ];
+
+  const result = await executeQuery<{ flowTransactionUpdate: FlowTransaction }>(
     query,
-    { appointment: input }
+    { input: { sessionToken: transaction.trxToken, inputs, notifications: true } }
   );
 
   if (result.errors) {
     console.error('GraphQL Errors:', result.errors);
-    return null;
+    return 'error';
   }
 
-  return result.data?.appointmentCreate || null;
+  return result.data?.flowTransactionUpdate ? 'sent' : 'error';
 }
 
 // Export types for use in components

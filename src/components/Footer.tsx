@@ -131,9 +131,10 @@ export default function Footer() {
           <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500">
             <p>&copy; {currentYear} Jordan GmbH. Alle Rechte vorbehalten.</p>
             <div className="flex gap-4">
-              <Link href="#" className="hover:text-slate-300 transition-colors">Datenschutz</Link>
-              <Link href="#" className="hover:text-slate-300 transition-colors">Impressum</Link>
-              <Link href="#" className="hover:text-slate-300 transition-colors">AGB</Link>
+              <Link href="/datenschutz" className="hover:text-slate-300 transition-colors">Datenschutz</Link>
+              <Link href="/impressum" className="hover:text-slate-300 transition-colors">Impressum</Link>
+              <Link href="/agb" className="hover:text-slate-300 transition-colors">AGB</Link>
+              <Link href="/barrierefreiheit" className="hover:text-slate-300 transition-colors">Barrierefreiheit</Link>
             </div>
           </div>
         </div>

@@ -31,6 +31,10 @@
   --slate-900: #0f172a;
   --slate-950: #020617;
   
+  /* Warm neutrals — freundlicher als reines Weiß */
+  --warm-50: #faf9f7;
+  --warm-100: #f4f2ee;
+
   /* Semantic */
   --background: #ffffff;
   --foreground: var(--slate-900);
@@ -134,6 +138,43 @@
 .animate-float { animation: float 4s ease-in-out infinite; }
 .animate-pulse-glow { animation: pulse-glow 2.5s ease-in-out infinite; }
 
+/* ─── Scroll Reveal (JS fügt .reveal-init hinzu, IO dann .reveal-visible) ─── */
+
+.reveal-init {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-init.reveal-left { transform: translateX(-32px); }
+.reveal-init.reveal-right { transform: translateX(32px); }
+.reveal-init.reveal-scale { transform: scale(0.94); }
+
+.reveal-init.reveal-visible {
+  opacity: 1;
+  transform: none;
+  will-change: auto;
+}
+
+/* ─── Marquee (Vertrauens-Laufband) ───────── */
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+.marquee-mask {
+  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+}
+
 .delay-100 { animation-delay: 100ms; }
 .delay-200 { animation-delay: 200ms; }
 .delay-300 { animation-delay: 300ms; }
@@ -162,6 +203,11 @@
   .animate-ping,
   .animate-pulse,
   .animate-bounce {
+    animation: none !important;
+  }
+
+  /* Marquee auf Mobile pausieren (statische Chip-Reihe bleibt sichtbar) */
+  .animate-marquee {
     animation: none !important;
   }
 

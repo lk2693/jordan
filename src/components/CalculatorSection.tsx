@@ -25,45 +25,46 @@ export default function CalculatorSection() {
     <section className="py-20 md:py-28 bg-white">
       <div className="container mx-auto px-4">
         <div className="max-w-2xl mx-auto">
-          <div className="text-center mb-8">
-            <span className="inline-block bg-blue-50 text-blue-700 px-4 py-1.5 rounded-full text-sm font-semibold mb-4">
-              Kostenlos & unverbindlich
+          <div className="text-center mb-10">
+            <span className="inline-flex items-center gap-3 text-[0.8125rem] font-semibold uppercase tracking-[0.18em] text-amber-600 mb-4">
+              <span className="h-px w-10 bg-current" aria-hidden />
+              Kostenrechner
+              <span className="h-px w-10 bg-current" aria-hidden />
             </span>
             <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-3">
               Kosten sofort berechnen
             </h2>
             <p className="text-slate-500">
-              In unter 2 Minuten eine erste Kostenschätzung erhalten
+              In unter zwei Minuten eine erste Kostenschätzung erhalten — kostenlos und unverbindlich
             </p>
           </div>
 
-          <div className="bg-white rounded-2xl shadow-xl border border-slate-100 overflow-hidden">
+          <div className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
             {/* Tabs */}
-            <div className="flex border-b border-slate-100">
+            <div className="flex border-b border-slate-200">
               {[
-                { key: 'heating' as CalculatorType, label: 'Heizung', icon: '🔥' },
-                { key: 'bathroom' as CalculatorType, label: 'Bad', icon: '🚿' },
-                { key: 'maintenance' as CalculatorType, label: 'Wartung', icon: '🔧' },
+                { key: 'heating' as CalculatorType, label: 'Heizung' },
+                { key: 'bathroom' as CalculatorType, label: 'Bad' },
+                { key: 'maintenance' as CalculatorType, label: 'Wartung' },
               ].map((tab) => (
                 <button
                   key={tab.key}
                   onClick={() => setActiveCalculator(tab.key)}
-                  className={`flex-1 py-4 text-sm font-semibold transition-all relative ${
+                  className={`flex-1 py-4 text-sm font-bold transition-colors relative ${
                     activeCalculator === tab.key
                       ? 'text-[#152852]'
                       : 'text-slate-400 hover:text-slate-600 hover:bg-slate-50'
                   }`}
                 >
-                  <span className="block text-lg mb-0.5">{tab.icon}</span>
                   {tab.label}
                   {activeCalculator === tab.key && (
-                    <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-12 h-0.5 bg-amber-500 rounded-full" />
+                    <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-12 h-0.5 bg-amber-500" />
                   )}
                 </button>
               ))}
             </div>
-            <div className="p-6">
-              <Calculator type={activeCalculator} useApi={false} identName="" />
+            <div className="p-6 md:p-8">
+              <Calculator type={activeCalculator} useApi={false} identName="" plain />
             </div>
           </div>
 

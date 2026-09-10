@@ -3,6 +3,7 @@ import { Exo_2, Source_Sans_3 } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import StickyContactBar from "@/components/StickyContactBar";
 
 // Corporate Identity fonts matching jordan24.de
 const exo2 = Exo_2({
@@ -83,9 +84,6 @@ export default function RootLayout({
   return (
     <html lang="de">
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link rel="preconnect" href="https://images.unsplash.com" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover" />
         <meta name="theme-color" content="#152852" />
         <link rel="icon" href="/joradan.png" type="image/png" />
@@ -98,6 +96,9 @@ export default function RootLayout({
         <Header />
         <main>{children}</main>
         <Footer />
+        {/* Mobile: Anrufen/Anfrage immer einen Tap entfernt */}
+        <StickyContactBar />
+        <div className="h-14 lg:hidden" aria-hidden />
       </body>
     </html>
   );

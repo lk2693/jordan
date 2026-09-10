@@ -2,11 +2,13 @@
 
 import { useState, useEffect } from 'react';
 import { useLokalLeads } from '@/lib/hooks/useLokalLeads';
+import { LOKALLEADS_IDENT } from '@/lib/lokalleads-api';
 
 interface CalculatorProps {
   type: 'heating' | 'bathroom' | 'maintenance';
   identName?: string; // Optional LokalLeads integration identifier
   useApi?: boolean; // Enable/disable API integration
+  plain?: boolean; // Ohne eigene Karte/Titel rendern (wenn der Container das übernimmt)
 }
 
 interface FormData {
@@ -25,7 +27,12 @@ interface FormData {
   phone: string;
 }
 
-export default function Calculator({ type, identName, useApi = false }: CalculatorProps) {
+export default function Calculator({
+  type,
+  identName = LOKALLEADS_IDENT || undefined,
+  useApi = Boolean(LOKALLEADS_IDENT),
+  plain = false,
+}: CalculatorProps) {
   const [formData, setFormData] = useState<FormData>({
     // Heating calculator
     area: '',
@@ -211,15 +218,19 @@ export default function Calculator({ type, identName, useApi = false }: Calculat
   };
 
   return (
-    <div className="bg-white p-6 rounded-lg shadow-lg">
-      <h3 className="text-2xl font-bold text-gray-800 mb-4">{getTitle()}</h3>
-      <p className="text-gray-600 mb-6">{getDescription()}</p>
+    <div className={plain ? '' : 'bg-white p-6 md:p-8 rounded-2xl border border-slate-200 shadow-sm'}>
+      {!plain && (
+        <div className="mb-6">
+          <h3 className="text-xl font-extrabold text-slate-900 mb-1.5">{getTitle()}</h3>
+          <p className="text-sm text-slate-500">{getDescription()}</p>
+        </div>
+      )}
 
-      <div className="space-y-4">
+      <div className="space-y-5">
         {type === 'heating' && (
           <>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-semibold text-slate-700 mb-1.5">
                 Wohnfläche (m²)
               </label>
               <input
@@ -227,19 +238,19 @@ export default function Calculator({ type, identName, useApi = false }: Calculat
                 name="area"
                 value={formData.area}
                 onChange={handleInputChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 bg-white text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-[#152852] focus:ring-2 focus:ring-[#152852]/15 transition-colors"
                 placeholder="z.B. 120"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-semibold text-slate-700 mb-1.5">
                 Aktuelles Heizsystem
               </label>
               <select
                 name="currentHeating"
                 value={formData.currentHeating}
                 onChange={handleInputChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 bg-white text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-[#152852] focus:ring-2 focus:ring-[#152852]/15 transition-colors"
               >
                 <option value="">Bitte wählen</option>
                 <option value="gas">Gasheizung</option>
@@ -249,7 +260,7 @@ export default function Calculator({ type, identName, useApi = false }: Calculat
               </select>
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-semibold text-slate-700 mb-1.5">
                 Baujahr der Dämmung
               </label>
               <input
@@ -257,7 +268,7 @@ export default function Calculator({ type, identName, useApi = false }: Calculat
                 name="insulationYear"
                 value={formData.insulationYear}
                 onChange={handleInputChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 bg-white text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-[#152852] focus:ring-2 focus:ring-[#152852]/15 transition-colors"
                 placeholder="z.B. 2010"
               />
             </div>
@@ -267,7 +278,7 @@ export default function Calculator({ type, identName, useApi = false }: Calculat
         {type === 'bathroom' && (
           <>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-semibold text-slate-700 mb-1.5">
                 Badezimmergröße (m²)
               </label>
               <input
@@ -275,19 +286,19 @@ export default function Calculator({ type, identName, useApi = false }: Calculat
                 name="roomSize"
                 value={formData.roomSize}
                 onChange={handleInputChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 bg-white text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-[#152852] focus:ring-2 focus:ring-[#152852]/15 transition-colors"
                 placeholder="z.B. 8"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-semibold text-slate-700 mb-1.5">
                 Badezimmer-Typ
               </label>
               <select
                 name="bathroomType"
                 value={formData.bathroomType}
                 onChange={handleInputChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 bg-white text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-[#152852] focus:ring-2 focus:ring-[#152852]/15 transition-colors"
               >
                 <option value="">Bitte wählen</option>
                 <option value="standard">Standard</option>
@@ -297,17 +308,17 @@ export default function Calculator({ type, identName, useApi = false }: Calculat
               </select>
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-semibold text-slate-700 mb-1.5">
                 Gewünschte Ausstattung
               </label>
               <div className="space-y-2">
                 {['Neue Badewanne', 'Dusche', 'Waschtisch', 'WC', 'Fliesen', 'Fußbodenheizung'].map((item) => (
-                  <label key={item} className="flex items-center">
+                  <label key={item} className="flex items-center text-sm text-slate-600">
                     <input
                       type="checkbox"
                       value={item}
                       onChange={handleCheckboxChange}
-                      className="mr-2 h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                      className="mr-2.5 h-4 w-4 accent-[#152852] border-slate-300 rounded"
                     />
                     {item}
                   </label>
@@ -320,7 +331,7 @@ export default function Calculator({ type, identName, useApi = false }: Calculat
         {type === 'maintenance' && (
           <>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-semibold text-slate-700 mb-1.5">
                 Alter der Anlage (Jahre)
               </label>
               <input
@@ -328,19 +339,19 @@ export default function Calculator({ type, identName, useApi = false }: Calculat
                 name="systemAge"
                 value={formData.systemAge}
                 onChange={handleInputChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 bg-white text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-[#152852] focus:ring-2 focus:ring-[#152852]/15 transition-colors"
                 placeholder="z.B. 5"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-semibold text-slate-700 mb-1.5">
                 Anlagentyp
               </label>
               <select
                 name="systemType"
                 value={formData.systemType}
                 onChange={handleInputChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 bg-white text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-[#152852] focus:ring-2 focus:ring-[#152852]/15 transition-colors"
               >
                 <option value="">Bitte wählen</option>
                 <option value="gas">Gasheizung</option>
@@ -350,7 +361,7 @@ export default function Calculator({ type, identName, useApi = false }: Calculat
               </select>
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-semibold text-slate-700 mb-1.5">
                 Letzte Wartung (Jahre)
               </label>
               <input
@@ -358,7 +369,7 @@ export default function Calculator({ type, identName, useApi = false }: Calculat
                 name="lastMaintenance"
                 value={formData.lastMaintenance}
                 onChange={handleInputChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 bg-white text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-[#152852] focus:ring-2 focus:ring-[#152852]/15 transition-colors"
                 placeholder="z.B. 1"
               />
             </div>
@@ -368,11 +379,11 @@ export default function Calculator({ type, identName, useApi = false }: Calculat
         <button
           onClick={handleCalculate}
           disabled={apiLoading}
-          className="w-full bg-orange-500 hover:bg-orange-600 disabled:bg-orange-300 text-white py-3 rounded-lg font-semibold transition-colors flex items-center justify-center"
+          className="w-full bg-amber-500 hover:bg-amber-400 disabled:bg-amber-300 text-[#152852] py-3.5 rounded-lg font-bold transition-colors duration-200 flex items-center justify-center"
         >
           {apiLoading ? (
             <>
-              <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+              <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-[#152852]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                 <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                 <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
               </svg>
@@ -384,41 +395,38 @@ export default function Calculator({ type, identName, useApi = false }: Calculat
         </button>
 
         {apiError && (
-          <div className="mt-4 p-3 bg-red-50 text-red-700 rounded-lg border border-red-200 text-sm">
+          <div className="mt-4 border-l-4 border-red-500 pl-4 py-1 text-sm text-slate-600">
             {apiError}
           </div>
         )}
 
         {result && showDetails && (
-          <div className="mt-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
-            <h4 className="font-bold text-blue-800 mb-2">Geschätzte Kosten:</h4>
-            <div className="text-2xl font-bold text-blue-600 mb-2">
+          <div className="mt-8 border-t-2 border-[#152852] pt-5">
+            <p className="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-1">Geschätzte Kosten</p>
+            <p className="text-3xl font-extrabold text-slate-900">
               {result.toLocaleString('de-DE', { style: 'currency', currency: 'EUR' })}
-            </div>
-            
+            </p>
+
             {/* Show API details if available */}
             {calculationResult?.details && (
-              <div className="mt-3 pt-3 border-t border-blue-200">
-                <p className="text-sm text-blue-700 font-medium mb-2">Details:</p>
-                <ul className="text-sm text-blue-600 space-y-1">
-                  {Object.entries(calculationResult.details).map(([key, value]) => (
-                    <li key={key} className="flex justify-between">
-                      <span>{key}:</span>
-                      <span className="font-medium">{String(value)}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              <dl className="mt-4 divide-y divide-slate-200 border-y border-slate-200 text-sm">
+                {Object.entries(calculationResult.details).map(([key, value]) => (
+                  <div key={key} className="flex justify-between gap-4 py-2.5">
+                    <dt className="text-slate-500">{key}</dt>
+                    <dd className="font-semibold text-slate-900">{String(value)}</dd>
+                  </div>
+                ))}
+              </dl>
             )}
-            
-            <p className="text-sm text-blue-700 mt-3">
-              * Dies ist eine unverbindliche Schätzung. Für ein genaues Angebot kontaktieren Sie uns bitte.
+
+            <p className="text-sm text-slate-400 mt-3">
+              * Unverbindliche Schätzung — den genauen Preis nennen wir Ihnen nach einem Vor-Ort-Termin.
             </p>
-            
+
             {!showContactForm && !contactSubmitted && (
-              <button 
+              <button
                 onClick={() => setShowContactForm(true)}
-                className="mt-3 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded text-sm"
+                className="mt-5 w-full sm:w-auto bg-[#152852] hover:bg-[#193c6e] text-white px-6 py-3 rounded-lg text-sm font-bold transition-colors duration-200"
               >
                 Kostenlose Beratung anfragen
               </button>
@@ -426,8 +434,8 @@ export default function Calculator({ type, identName, useApi = false }: Calculat
 
             {/* Contact Form */}
             {showContactForm && !contactSubmitted && (
-              <div className="mt-4 pt-4 border-t border-blue-200">
-                <h5 className="font-semibold text-blue-800 mb-3">Rückruf anfordern</h5>
+              <div className="mt-6 pt-5 border-t border-slate-200">
+                <h5 className="font-bold text-slate-900 mb-4">Rückruf anfordern</h5>
                 <div className="space-y-3">
                   <input
                     type="text"
@@ -435,7 +443,7 @@ export default function Calculator({ type, identName, useApi = false }: Calculat
                     value={formData.name}
                     onChange={handleInputChange}
                     placeholder="Ihr Name *"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+                    className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 bg-white text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-[#152852] focus:ring-2 focus:ring-[#152852]/15 transition-colors text-sm"
                     required
                   />
                   <input
@@ -444,7 +452,7 @@ export default function Calculator({ type, identName, useApi = false }: Calculat
                     value={formData.email}
                     onChange={handleInputChange}
                     placeholder="Ihre E-Mail *"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+                    className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 bg-white text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-[#152852] focus:ring-2 focus:ring-[#152852]/15 transition-colors text-sm"
                     required
                   />
                   <input
@@ -453,19 +461,19 @@ export default function Calculator({ type, identName, useApi = false }: Calculat
                     value={formData.phone}
                     onChange={handleInputChange}
                     placeholder="Ihre Telefonnummer"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+                    className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 bg-white text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-[#152852] focus:ring-2 focus:ring-[#152852]/15 transition-colors text-sm"
                   />
-                  <div className="flex gap-2">
+                  <div className="flex gap-2 pt-1">
                     <button
                       onClick={handleRequestCallback}
                       disabled={apiLoading || !formData.name || !formData.email}
-                      className="flex-1 bg-green-600 hover:bg-green-700 disabled:bg-green-300 text-white px-4 py-2 rounded text-sm font-medium"
+                      className="flex-1 bg-[#152852] hover:bg-[#193c6e] disabled:bg-slate-300 text-white px-5 py-2.5 rounded-lg text-sm font-bold transition-colors duration-200"
                     >
                       {apiLoading ? 'Wird gesendet...' : 'Absenden'}
                     </button>
                     <button
                       onClick={() => setShowContactForm(false)}
-                      className="px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded text-sm"
+                      className="px-5 py-2.5 text-sm font-semibold text-slate-500 hover:text-slate-700 transition-colors"
                     >
                       Abbrechen
                     </button>
@@ -476,13 +484,9 @@ export default function Calculator({ type, identName, useApi = false }: Calculat
 
             {/* Success Message */}
             {contactSubmitted && (
-              <div className="mt-4 p-3 bg-green-50 text-green-700 rounded-lg border border-green-200">
-                <div className="flex items-center">
-                  <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                  </svg>
-                  <span className="font-medium">Vielen Dank! Wir melden uns bei Ihnen.</span>
-                </div>
+              <div className="mt-5 border-l-4 border-emerald-500 pl-4 py-1">
+                <p className="font-semibold text-slate-900">Vielen Dank für Ihre Anfrage!</p>
+                <p className="text-sm text-slate-500 mt-0.5">Wir melden uns zeitnah bei Ihnen.</p>
               </div>
             )}
           </div>
