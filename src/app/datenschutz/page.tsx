@@ -87,11 +87,11 @@ export default function Datenschutz() {
             </div>
 
             <div>
-              <h2 className="text-xl font-extrabold text-slate-900 mb-3">5. Kartendarstellung (OpenStreetMap / CARTO)</h2>
+              <h2 className="text-xl font-extrabold text-slate-900 mb-3">5. Kartendarstellung (OpenStreetMap)</h2>
               <p>
                 Auf den Seiten &bdquo;Kontakt&ldquo; und &bdquo;Unternehmen&ldquo; binden wir eine Anfahrtskarte ein. Die
-                Kartenkacheln werden von den Servern des Dienstes CARTO (basemaps.cartocdn.com) auf Basis
-                von OpenStreetMap-Daten geladen. Beim Anzeigen der Karte wird Ihre IP-Adresse technisch
+                Kartenkacheln werden von den Servern der OpenStreetMap Foundation (tile.openstreetmap.org)
+                geladen. Beim Anzeigen der Karte wird Ihre IP-Adresse technisch
                 bedingt an diese Server übermittelt (Art. 6 Abs. 1 lit. f DSGVO — berechtigtes Interesse
                 an einer verständlichen Anfahrtsbeschreibung). Wenn Sie das nicht möchten, nutzen Sie die
                 Karte nicht — unsere Adresse finden Sie auf denselben Seiten auch als Text.
