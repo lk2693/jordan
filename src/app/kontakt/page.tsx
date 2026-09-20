@@ -283,7 +283,7 @@ export default function Kontakt() {
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="rounded-lg overflow-hidden border border-slate-200" style={{ height: '400px' }}>
-              <Map lat={52.2350} lng={10.5650} zoom={15} markerText="JORDAN GmbH" />
+              <Map lat={52.24643} lng={10.58216} zoom={16} markerText="JORDAN GmbH" />
             </div>
             <div className="mt-4">
               <a

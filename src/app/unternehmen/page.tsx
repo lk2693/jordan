@@ -474,7 +474,7 @@ export default function Unternehmen() {
             <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-start">
               <Reveal>
                 <div className="h-[380px] rounded-lg overflow-hidden border border-slate-200">
-                  <MapWrapper lat={52.2350} lng={10.5650} zoom={15} markerText="JORDAN GmbH" />
+                  <MapWrapper lat={52.24643} lng={10.58216} zoom={16} markerText="JORDAN GmbH" />
                 </div>
               </Reveal>
               <Reveal delay={100}>

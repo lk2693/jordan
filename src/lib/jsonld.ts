@@ -16,8 +16,8 @@ export function generateJsonLd() {
     },
     geo: {
       '@type': 'GeoCoordinates',
-      latitude: 52.2688,
-      longitude: 10.5268
+      latitude: 52.24643,
+      longitude: 10.58216
     },
     openingHoursSpecification: [
       {
