@@ -19,7 +19,7 @@ export default function ContactForm() {
             <div className="space-y-3">
               <p className="flex items-center">
                 <span className="mr-3">📞</span>
-                <strong>Tel:</strong>&nbsp;+49 531 123456
+                <strong>Tel:</strong>&nbsp;+49 531 23449090
               </p>
               <p className="flex items-center">
                 <span className="mr-3">📧</span>
@@ -42,7 +42,7 @@ export default function ContactForm() {
               Bei Notfällen sind wir rund um die Uhr für Sie erreichbar:
             </p>
             <p className="text-2xl font-bold text-red-400 mb-4">
-              📞 +49 531 NOTFALL
+              📞 0531 234 490 90
             </p>
             <ul className="text-sm text-gray-400 space-y-1">
               <li>• Heizungsausfall im Winter</li>

@@ -83,7 +83,7 @@ export default function Agb() {
             <Reveal className="mt-10" delay={150}>
               <p className="text-sm text-slate-400 leading-relaxed">
                 Fragen zu unseren Geschäftsbedingungen? Rufen Sie uns an unter{' '}
-                <a href="tel:053123449090" className="font-semibold text-[#152852] hover:text-amber-600 transition-colors">0531 2 34 49 09-0</a>{' '}
+                <a href="tel:053123449090" className="font-semibold text-[#152852] hover:text-amber-600 transition-colors">0531 234 490 90</a>{' '}
                 oder schreiben Sie an{' '}
                 <a href="mailto:info@jordan24.de" className="font-semibold text-[#152852] hover:text-amber-600 transition-colors">info@jordan24.de</a>.
               </p>

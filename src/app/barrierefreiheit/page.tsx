@@ -87,7 +87,7 @@ export default function Barrierefreiheit() {
               </p>
               <p className="mt-3">
                 E-Mail: <a href="mailto:info@jordan24.de" className="font-semibold text-[#152852] hover:text-amber-600 transition-colors">info@jordan24.de</a><br />
-                Telefon: <a href="tel:053123449090" className="font-semibold text-[#152852] hover:text-amber-600 transition-colors">(0531) 2 34 49 09-0</a>
+                Telefon: <a href="tel:053123449090" className="font-semibold text-[#152852] hover:text-amber-600 transition-colors">0531 234 490 90</a>
               </p>
             </div>
 

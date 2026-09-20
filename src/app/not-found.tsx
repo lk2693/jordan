@@ -37,10 +37,10 @@ export default function NotFound() {
                 🚨 Notfall? Wir sind 24/7 für Sie da!
               </h3>
               <a 
-                href="tel:+49531234490980" 
+                href="tel:053123449090" 
                 className="text-red-600 hover:text-red-800 font-bold text-xl"
               >
-                0531 23 44 909 80
+                0531 234 490 90
               </a>
             </div>
           </div>

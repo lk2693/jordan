@@ -40,9 +40,9 @@ export default function Impressum() {
               <div className="py-4 grid grid-cols-1 sm:grid-cols-[12rem_1fr] gap-1 sm:gap-4">
                 <dt className="text-sm text-slate-400">Kontakt</dt>
                 <dd className="text-sm text-slate-900">
-                  Tel. <a href="tel:053123449090" className="font-semibold hover:text-amber-600 transition-colors">(0531) 2 34 49 09-0</a><br />
+                  Tel. <a href="tel:053123449090" className="font-semibold hover:text-amber-600 transition-colors">0531 234 490 90</a><br />
                   Fax (0531) 2 34 49 09 89<br />
-                  Notdienst <a href="tel:0531234490980" className="font-semibold hover:text-amber-600 transition-colors">(0531) 234 490 980</a><br />
+                  Notdienst <a href="tel:053123449090" className="font-semibold hover:text-amber-600 transition-colors">0531 234 490 90</a><br />
                   E-Mail <a href="mailto:info@jordan24.de" className="font-semibold hover:text-amber-600 transition-colors">info@jordan24.de</a><br />
                   Web <a href="https://www.jordan24.de" target="_blank" rel="noopener noreferrer" className="font-semibold hover:text-amber-600 transition-colors">www.jordan24.de</a>
                 </dd>

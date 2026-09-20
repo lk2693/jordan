@@ -40,7 +40,7 @@ export default function Datenschutz() {
                 Geschäftsführer: Siegmar Zajonc<br />
                 Rischbleek 3<br />
                 38126 Braunschweig<br />
-                Tel.: <a href="tel:053123449090" className="font-semibold text-[#152852] hover:text-amber-600 transition-colors">(0531) 2 34 49 09-0</a><br />
+                Tel.: <a href="tel:053123449090" className="font-semibold text-[#152852] hover:text-amber-600 transition-colors">0531 234 490 90</a><br />
                 E-Mail: <a href="mailto:info@jordan24.de" className="font-semibold text-[#152852] hover:text-amber-600 transition-colors">info@jordan24.de</a>
               </p>
             </div>

@@ -20,7 +20,7 @@ export default function Footer() {
             </div>
             <div className="flex flex-col sm:flex-row gap-3">
               <a
-                href="tel:053123449080"
+                href="tel:053123449090"
                 className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/15 text-white border border-white/20 px-6 py-3 rounded-xl font-semibold transition-colors duration-200"
               >
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -106,7 +106,7 @@ export default function Footer() {
               </li>
               <li>
                 <a href="tel:053123449090" className="text-sm text-slate-400 hover:text-amber-400 transition-colors">
-                  0531 2 34 49 09-0
+                  0531 234 490 90
                 </a>
               </li>
               <li>

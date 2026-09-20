@@ -226,7 +226,7 @@ export default function Kontakt() {
                   {status === 'error' && (
                     <p className="text-sm text-red-600 bg-red-50 rounded-md py-2.5 px-3">
                       Das hat leider nicht geklappt. Rufen Sie uns an (
-                      <a href="tel:053123449090" className="font-bold underline">0531 2 34 49 09-0</a>
+                      <a href="tel:053123449090" className="font-bold underline">0531 234 490 90</a>
                       ) oder schreiben Sie an{' '}
                       <a href="mailto:info@jordan24.de" className="font-bold underline">info@jordan24.de</a>.
                     </p>
@@ -247,7 +247,7 @@ export default function Kontakt() {
                 <div className="py-4 grid grid-cols-[7rem_1fr] gap-4">
                   <dt className="text-sm text-slate-400">Telefon</dt>
                   <dd>
-                    <a href="tel:053123449090" className="text-sm font-semibold text-[#152852] hover:text-amber-600 transition-colors">0531 2 34 49 09-0</a>
+                    <a href="tel:053123449090" className="text-sm font-semibold text-[#152852] hover:text-amber-600 transition-colors">0531 234 490 90</a>
                     <span className="block text-xs text-slate-400 mt-0.5">Fax: 0531 2 34 49 09-9</span>
                   </dd>
                 </div>
@@ -268,8 +268,8 @@ export default function Kontakt() {
               {/* Notdienst — roter Akzent wie auf der Startseite */}
               <div className="mt-8 border-l-4 border-red-500 pl-5">
                 <p className="font-bold text-slate-900">Notdienst — rund um die Uhr</p>
-                <a href="tel:053123449080" className="text-lg font-extrabold text-[#152852] hover:text-red-600 transition-colors">
-                  0531 23 44 909 80
+                <a href="tel:053123449090" className="text-lg font-extrabold text-[#152852] hover:text-red-600 transition-colors">
+                  0531 234 490 90
                 </a>
                 <p className="text-sm text-slate-400 mt-1">Bei Heizungsausfall oder Wasserschaden, 365 Tage im Jahr.</p>
               </div>

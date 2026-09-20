@@ -142,7 +142,7 @@ export default function Notdienst() {
               <div className="relative bg-white rounded-2xl p-8 shadow-2xl">
                 <p className="text-slate-500 text-sm font-medium mb-3 uppercase tracking-wider">Jetzt anrufen</p>
                 <a
-                  href="tel:053123449080"
+                  href="tel:053123449090"
                   className="group flex items-center justify-center gap-3 text-3xl sm:text-4xl font-extrabold text-[#152852] hover:text-[#F39900] transition-colors duration-300"
                 >
                   <span className="w-12 h-12 bg-[#F39900] rounded-full flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300 shadow-lg shadow-[#F39900]/30">
@@ -150,7 +150,7 @@ export default function Notdienst() {
                       <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
                     </svg>
                   </span>
-                  <span className="whitespace-nowrap">0531 234 4909 80</span>
+                  <span className="whitespace-nowrap">0531 234 490 90</span>
                 </a>
                 <div className="flex items-center justify-center gap-4 mt-5 text-xs text-slate-400">
                   <span className="flex items-center gap-1.5">
@@ -267,7 +267,7 @@ export default function Notdienst() {
                 {
                   step: '03',
                   title: 'Uns anrufen',
-                  desc: 'Rufen Sie unseren Notdienst unter 0531 234 4909 80 an — wir sind 24/7 erreichbar.',
+                  desc: 'Rufen Sie unseren Notdienst unter 0531 234 490 90 an — wir sind 24/7 erreichbar.',
                   color: 'blue',
                 },
                 {
@@ -301,7 +301,7 @@ export default function Notdienst() {
             {/* Inline call action */}
             <div className="mt-10 text-center">
               <a
-                href="tel:053123449080"
+                href="tel:053123449090"
                 className="inline-flex items-center gap-2 bg-red-600 text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-red-700 transition-all hover:-translate-y-0.5 shadow-lg shadow-red-600/25"
               >
                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -363,7 +363,7 @@ export default function Notdienst() {
 
                   <div className="mt-5 pt-4 border-t border-slate-100">
                     <a
-                      href="tel:053123449080"
+                      href="tel:053123449090"
                       className="inline-flex items-center gap-2 text-sm font-semibold text-[#F39900] hover:text-[#d98600] transition-colors"
                     >
                       <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -454,7 +454,7 @@ export default function Notdienst() {
                     ))}
                   </ul>
                   <a
-                    href="tel:053123449080"
+                    href="tel:053123449090"
                     className={`mt-6 w-full inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-bold text-sm transition-all ${
                       plan.highlighted
                         ? 'bg-[#F39900] text-white hover:bg-[#d98600] shadow-lg shadow-[#F39900]/30'
@@ -468,7 +468,7 @@ export default function Notdienst() {
             </div>
 
             <p className="text-center text-sm text-slate-400 mt-8">
-              * Alle Preise inkl. MwSt. Endpreis wird vor Beginn der Arbeiten transparent kommuniziert.
+              * Alle Preise netto zzgl. 19 % MwSt. und Anfahrtspauschale. Endpreis wird vor Beginn der Arbeiten transparent kommuniziert.
             </p>
           </div>
         </div>
@@ -654,13 +654,13 @@ export default function Notdienst() {
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <a
-                href="tel:053123449080"
+                href="tel:053123449090"
                 className="group inline-flex items-center gap-3 bg-[#F39900] text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-[#d98600] transition-all hover:-translate-y-0.5 shadow-xl shadow-[#F39900]/30"
               >
                 <svg className="w-5 h-5 group-hover:animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
                 </svg>
-                0531 234 4909 80
+                0531 234 490 90
               </a>
               <Link
                 href="/kontakt"

@@ -5,7 +5,7 @@ export function generateJsonLd() {
     name: 'Jordan GmbH',
     description: 'Kompetent beraten. Exakt planen. Zuverlässig umsetzen. Ihr Experte für Klima, Heizung, Sanitär und Elektro in Braunschweig.',
     url: 'https://jordan-gmbh.de',
-    telephone: '+49 531 123456',
+    telephone: '+49 531 23449090',
     email: 'info@jordan-gmbh.de',
     address: {
       '@type': 'PostalAddress',

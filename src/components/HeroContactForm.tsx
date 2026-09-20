@@ -67,7 +67,7 @@ export default function HeroContactForm() {
                   einfach absenden, wir melden uns danach.
                   <span className="block mt-2 text-slate-400">
                     Kein E-Mail-Programm? Rufen Sie an:{' '}
-                    <a href="tel:053123449080" className="font-bold text-slate-600">0531 23 44 909 80</a>
+                    <a href="tel:053123449090" className="font-bold text-slate-600">0531 234 490 90</a>
                   </span>
                 </p>
               </>
@@ -139,7 +139,7 @@ export default function HeroContactForm() {
               {status === 'error' && (
                 <p className="text-center text-xs text-red-600 bg-red-50 rounded-lg py-2.5 px-3">
                   Das hat leider nicht geklappt. Rufen Sie uns direkt an:{' '}
-                  <a href="tel:053123449080" className="font-bold underline">0531 23 44 909 80</a>
+                  <a href="tel:053123449090" className="font-bold underline">0531 234 490 90</a>
                 </p>
               )}
               <p className="text-center text-xs text-slate-400">

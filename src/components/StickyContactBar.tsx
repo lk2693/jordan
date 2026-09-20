@@ -28,7 +28,7 @@ export default function StickyContactBar() {
     >
       <div className="grid grid-cols-2 gap-px bg-slate-200 border-t border-slate-200 shadow-[0_-4px_20px_rgb(0_0_0/0.1)]">
         <a
-          href="tel:053123449080"
+          href="tel:053123449090"
           className="flex items-center justify-center gap-2 bg-white text-[#152852] font-bold py-4 text-sm active:bg-slate-50"
         >
           <svg className="w-4 h-4 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>

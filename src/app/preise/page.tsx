@@ -6,7 +6,7 @@ import Reveal from '@/components/Reveal';
 
 export const metadata: Metadata = {
   title: 'Preise & Verrechnung | Jordan GmbH — Transparente Kosten',
-  description: 'Faire und transparente Verrechnungssätze der Jordan GmbH. Stundensätze, Notdienstpauschale und Zuschläge auf einen Blick.',
+  description: 'Faire und transparente Verrechnungssätze der Jordan GmbH. Stundensätze, Anfahrtspauschalen, Notdienstpauschale und Zuschläge auf einen Blick — alle Preise netto.',
 };
 
 export default function Preise() {
@@ -31,6 +31,16 @@ export default function Preise() {
     { day: 'Samstag & Sonntag', time: '06:45 – 22:00 Uhr' },
   ];
 
+  // KFZ-Pauschalen inkl. Wegezeit — Netto-Werte, Brutto = netto × 1,19
+  const travelZones = [
+    { zone: 'Zone 1', range: 'bis 6 km', netto: '5,28', brutto: '6,28' },
+    { zone: 'Zone 2', range: '> 6 bis 10 km', netto: '8,80', brutto: '10,47' },
+    { zone: 'Zone 3', range: '> 10 bis 20 km', netto: '17,60', brutto: '20,94' },
+    { zone: 'Zone 4', range: '> 20 bis 30 km', netto: '26,40', brutto: '31,42' },
+    { zone: 'Zone 5', range: '> 30 bis 40 km', netto: '35,20', brutto: '41,89' },
+    { zone: 'Zone 6', range: 'über 40 km', netto: '0,70', brutto: '0,83', perKm: true },
+  ];
+
   return (
     <div className="min-h-screen overflow-x-hidden">
       {/* Hero — schlicht, ohne Stockfoto */}
@@ -43,7 +53,8 @@ export default function Preise() {
             </h1>
             <p className="text-lg text-slate-300 leading-relaxed max-w-xl">
               Transparent kalkuliert und ohne Überraschungen: Was eine Arbeitsstunde
-              bei uns kostet und welche Zuschläge wann gelten. Alle Preise zzgl. Material.
+              bei uns kostet, welche Anfahrtspauschale gilt und wann Zuschläge anfallen.
+              Alle Preise verstehen sich netto zzgl. 19 % MwSt. und Material.
             </p>
           </div>
         </div>
@@ -83,7 +94,8 @@ export default function Preise() {
                 </table>
               </div>
               <p className="text-sm text-slate-400 mt-4">
-                * inkl. 19 % MwSt. — Abrechnung nach tatsächlichem Aufwand, zzgl. Material und Anfahrt.
+                Alle Preise netto. * Brutto inkl. 19 % MwSt. — Abrechnung nach tatsächlichem Aufwand,
+                zzgl. Material und Anfahrtspauschale (siehe unten).
               </p>
             </Reveal>
           </div>
@@ -129,8 +141,75 @@ export default function Preise() {
         </div>
       </section>
 
+      {/* Anfahrt — KFZ-Pauschalen nach Entfernungszonen */}
+      <section id="anfahrt" className="py-20 md:py-24 bg-white scroll-mt-8">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <Reveal className="mb-10 space-y-4">
+              <Kicker>Anfahrt</Kicker>
+              <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900">KFZ-Pauschalen mit Wegezeit</h2>
+              <p className="text-slate-500 max-w-2xl leading-relaxed">
+                Für die Anfahrt berechnen wir eine Entfernungspauschale, die Fahrzeugkosten
+                und Wegezeit abdeckt. Maßgeblich ist die einfache Fahrstrecke von unserem
+                Standort am Rischbleek in Braunschweig zu Ihnen.
+              </p>
+            </Reveal>
+
+            <Reveal>
+              <div className="overflow-x-auto">
+                <table className="w-full text-left border-t-2 border-[#152852]">
+                  <thead>
+                    <tr className="border-b border-slate-200">
+                      <th className="py-4 pr-4 text-sm font-semibold text-slate-500 uppercase tracking-wider">Zone</th>
+                      <th className="py-4 px-4 text-sm font-semibold text-slate-500 uppercase tracking-wider">Entfernung (einfach)</th>
+                      <th className="py-4 px-4 text-sm font-semibold text-slate-500 uppercase tracking-wider text-right">Netto</th>
+                      <th className="py-4 pl-4 text-sm font-semibold text-slate-500 uppercase tracking-wider text-right">Brutto*</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {travelZones.map((z) => (
+                      <tr key={z.zone} className="border-b border-slate-200">
+                        <td className="py-4 pr-4 font-bold text-slate-900 whitespace-nowrap">{z.zone}</td>
+                        <td className="py-4 px-4 text-sm text-slate-500 whitespace-nowrap">
+                          {z.range}
+                          {z.perKm && <span className="block text-xs text-slate-400 mt-0.5">Abrechnung je gefahrenem km</span>}
+                        </td>
+                        <td className="py-4 px-4 text-right font-bold text-slate-900 whitespace-nowrap">
+                          {z.netto} €{z.perKm && <span className="text-sm font-semibold text-slate-400"> / km</span>}
+                        </td>
+                        <td className="py-4 pl-4 text-right font-semibold text-slate-500 whitespace-nowrap">
+                          {z.brutto} €{z.perKm && <span className="text-sm font-normal text-slate-400"> / km</span>}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <p className="text-sm text-slate-400 mt-4">
+                Alle Pauschalen netto. * Brutto inkl. 19 % MwSt.
+              </p>
+            </Reveal>
+
+            <Reveal className="mt-10" delay={100}>
+              <div className="border-l-4 border-amber-500 pl-6 space-y-3 text-sm text-slate-500 leading-relaxed">
+                <p className="font-bold text-slate-900">So wird die Zone ermittelt</p>
+                <p>
+                  Die Entfernung wird für die einfache Fahrt über einen Routenplaner ermittelt.
+                  Dabei nehmen wir die optimale Fahrstrecke — die beste Kombination aus Fahrzeit
+                  und Entfernung.
+                </p>
+                <p>
+                  Ab Zone 6 (über 40 km) rechnen wir kilometerweise ab. Dann werden alle
+                  gefahrenen Kilometer für Hin- und Rückfahrt berechnet.
+                </p>
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
       {/* Zuschläge — eine Tabelle statt bunter Kärtchen */}
-      <section className="py-20 md:py-24 bg-white">
+      <section className="py-20 md:py-24 bg-[var(--warm-50)] border-y border-slate-200">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <Reveal className="mb-10 space-y-4">
@@ -166,7 +245,8 @@ export default function Preise() {
 
             {/* Rechenbeispiel */}
             <Reveal className="mt-14" delay={100}>
-              <h3 className="text-xl font-extrabold text-slate-900 mb-6">Rechenbeispiel</h3>
+              <h3 className="text-xl font-extrabold text-slate-900 mb-2">Rechenbeispiel</h3>
+              <p className="text-sm text-slate-500 mb-6">Eine Arbeitsstunde, Anfahrt aus Zone 2 — alle Beträge netto zzgl. 19 % MwSt.</p>
               <div className="grid md:grid-cols-2 gap-8 md:gap-16">
                 <div>
                   <p className="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-4">KD-Techniker, Samstag</p>
@@ -179,9 +259,13 @@ export default function Preise() {
                       <dt className="text-slate-500">Zuschlag Samstag (+ 50 %)</dt>
                       <dd className="font-semibold text-slate-900 whitespace-nowrap">39,43 €</dd>
                     </div>
+                    <div className="flex justify-between gap-4">
+                      <dt className="text-slate-500">Anfahrt Zone 2 (&gt; 6 bis 10 km)</dt>
+                      <dd className="font-semibold text-slate-900 whitespace-nowrap">8,80 €</dd>
+                    </div>
                     <div className="flex justify-between gap-4 border-t border-slate-200 pt-2 mt-2 text-base">
                       <dt className="font-bold text-slate-900">Gesamt (netto)</dt>
-                      <dd className="font-extrabold text-slate-900 whitespace-nowrap">118,29 €</dd>
+                      <dd className="font-extrabold text-slate-900 whitespace-nowrap">127,09 €</dd>
                     </div>
                   </dl>
                 </div>
@@ -197,12 +281,16 @@ export default function Preise() {
                       <dd className="font-semibold text-slate-900 whitespace-nowrap">39,43 €</dd>
                     </div>
                     <div className="flex justify-between gap-4">
+                      <dt className="text-slate-500">Anfahrt Zone 2 (&gt; 6 bis 10 km)</dt>
+                      <dd className="font-semibold text-slate-900 whitespace-nowrap">8,80 €</dd>
+                    </div>
+                    <div className="flex justify-between gap-4">
                       <dt className="text-slate-500">Notdienstpauschale</dt>
                       <dd className="font-semibold text-slate-900 whitespace-nowrap">80,00 €</dd>
                     </div>
                     <div className="flex justify-between gap-4 border-t border-slate-200 pt-2 mt-2 text-base">
                       <dt className="font-bold text-slate-900">Gesamt (netto)</dt>
-                      <dd className="font-extrabold text-slate-900 whitespace-nowrap">198,29 €</dd>
+                      <dd className="font-extrabold text-slate-900 whitespace-nowrap">207,09 €</dd>
                     </div>
                   </dl>
                 </div>
@@ -235,13 +323,13 @@ export default function Preise() {
                   </svg>
                 </Link>
                 <a
-                  href="tel:053123449080"
+                  href="tel:053123449090"
                   className="inline-flex items-center justify-center gap-2 text-white border border-white/40 hover:border-white hover:bg-white/5 px-7 py-3.5 rounded-lg font-semibold transition-colors duration-200"
                 >
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
                   </svg>
-                  0531 23 44 909 80
+                  0531 234 490 90
                 </a>
               </div>
             </div>
